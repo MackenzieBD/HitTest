@@ -1,0 +1,472 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		320ADF2C254754F800B657C7 /* HT_Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 320ADF2B254754F800B657C7 /* HT_Shaders.metal */; };
+		320D69532540982900A590EB /* Strawboss.m in Sources */ = {isa = PBXBuildFile; fileRef = 320D69522540982900A590EB /* Strawboss.m */; };
+		320D69552540982A00A590EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 320D69542540982A00A590EB /* Assets.xcassets */; };
+		320D69582540982A00A590EB /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 320D69562540982A00A590EB /* MainMenu.xib */; };
+		320D695B2540982A00A590EB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 320D695A2540982A00A590EB /* main.m */; };
+		320D69682540A14E00A590EB /* HT_Renderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 320D69672540A14E00A590EB /* HT_Renderer.m */; };
+		32284D2B254C75630030C738 /* HT_Textures.m in Sources */ = {isa = PBXBuildFile; fileRef = 32284D29254C75630030C738 /* HT_Textures.m */; };
+		32284D4C254C77360030C738 /* Stainless.tif in Resources */ = {isa = PBXBuildFile; fileRef = 32284D33254C77360030C738 /* Stainless.tif */; };
+		32284D4D254C77360030C738 /* Concrete.tif in Resources */ = {isa = PBXBuildFile; fileRef = 32284D34254C77360030C738 /* Concrete.tif */; };
+		32284D4F254C77360030C738 /* Pebbles.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 32284D36254C77360030C738 /* Pebbles.jpg */; };
+		32284D51254C77360030C738 /* Grey rough.tif in Resources */ = {isa = PBXBuildFile; fileRef = 32284D38254C77360030C738 /* Grey rough.tif */; };
+		32284D52254C77360030C738 /* Wood.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 32284D39254C77360030C738 /* Wood.jpg */; };
+		32284D53254C77360030C738 /* Brass.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 32284D3A254C77360030C738 /* Brass.jpg */; };
+		32284D5B254C77360030C738 /* Marble.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 32284D42254C77360030C738 /* Marble.jpg */; };
+		32729B242546073100DB6663 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 32729B222546073100DB6663 /* LICENSE.txt */; };
+		32729B252546073100DB6663 /* AAPLMathUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 32729B232546073100DB6663 /* AAPLMathUtilities.m */; };
+		329207542541DB72005CCDAE /* HT_Scene.m in Sources */ = {isa = PBXBuildFile; fileRef = 329207532541DB72005CCDAE /* HT_Scene.m */; };
+		3292076A2541DEDF005CCDAE /* HT_Dodecahedron.m in Sources */ = {isa = PBXBuildFile; fileRef = 3292075C2541DEDF005CCDAE /* HT_Dodecahedron.m */; };
+		3292076B2541DEDF005CCDAE /* HT_Icosahedron.m in Sources */ = {isa = PBXBuildFile; fileRef = 3292075F2541DEDF005CCDAE /* HT_Icosahedron.m */; };
+		3292076C2541DEDF005CCDAE /* HT_Cube.m in Sources */ = {isa = PBXBuildFile; fileRef = 329207602541DEDF005CCDAE /* HT_Cube.m */; };
+		3292076D2541DEDF005CCDAE /* HT_Octahedron.m in Sources */ = {isa = PBXBuildFile; fileRef = 329207612541DEDF005CCDAE /* HT_Octahedron.m */; };
+		3292076E2541DEDF005CCDAE /* HT_Tetrahedron.m in Sources */ = {isa = PBXBuildFile; fileRef = 329207622541DEDF005CCDAE /* HT_Tetrahedron.m */; };
+		32F5E2D42554A16500FE3AD0 /* Read_Me.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 32F5E2D32554A16500FE3AD0 /* Read_Me.rtf */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		320ADF2B254754F800B657C7 /* HT_Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = HT_Shaders.metal; sourceTree = "<group>"; };
+		320D694E2540982900A590EB /* HitTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HitTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		320D69512540982900A590EB /* Strawboss.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Strawboss.h; sourceTree = "<group>"; };
+		320D69522540982900A590EB /* Strawboss.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Strawboss.m; sourceTree = "<group>"; };
+		320D69542540982A00A590EB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		320D69572540982A00A590EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		320D69592540982A00A590EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		320D695A2540982A00A590EB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		320D695C2540982A00A590EB /* HitTest.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HitTest.entitlements; sourceTree = "<group>"; };
+		320D69662540A14E00A590EB /* HT_Renderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HT_Renderer.h; sourceTree = "<group>"; };
+		320D69672540A14E00A590EB /* HT_Renderer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HT_Renderer.m; sourceTree = "<group>"; };
+		320D696A2540A63900A590EB /* HT_AppDefs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HT_AppDefs.h; sourceTree = "<group>"; };
+		32284D29254C75630030C738 /* HT_Textures.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HT_Textures.m; sourceTree = "<group>"; };
+		32284D2A254C75630030C738 /* HT_Textures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HT_Textures.h; sourceTree = "<group>"; };
+		32284D33254C77360030C738 /* Stainless.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Stainless.tif; sourceTree = "<group>"; };
+		32284D34254C77360030C738 /* Concrete.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Concrete.tif; sourceTree = "<group>"; };
+		32284D36254C77360030C738 /* Pebbles.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Pebbles.jpg; sourceTree = "<group>"; };
+		32284D38254C77360030C738 /* Grey rough.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "Grey rough.tif"; sourceTree = "<group>"; };
+		32284D39254C77360030C738 /* Wood.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Wood.jpg; sourceTree = "<group>"; };
+		32284D3A254C77360030C738 /* Brass.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Brass.jpg; sourceTree = "<group>"; };
+		32284D42254C77360030C738 /* Marble.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Marble.jpg; sourceTree = "<group>"; };
+		32729B212546073100DB6663 /* AAPLMathUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAPLMathUtilities.h; sourceTree = "<group>"; };
+		32729B222546073100DB6663 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		32729B232546073100DB6663 /* AAPLMathUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAPLMathUtilities.m; sourceTree = "<group>"; };
+		329207522541DB72005CCDAE /* HT_Scene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HT_Scene.h; sourceTree = "<group>"; };
+		329207532541DB72005CCDAE /* HT_Scene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HT_Scene.m; sourceTree = "<group>"; };
+		3292075B2541DEDF005CCDAE /* HT_Tetrahedron.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HT_Tetrahedron.h; sourceTree = "<group>"; };
+		3292075C2541DEDF005CCDAE /* HT_Dodecahedron.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HT_Dodecahedron.m; sourceTree = "<group>"; };
+		3292075F2541DEDF005CCDAE /* HT_Icosahedron.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HT_Icosahedron.m; sourceTree = "<group>"; };
+		329207602541DEDF005CCDAE /* HT_Cube.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HT_Cube.m; sourceTree = "<group>"; };
+		329207612541DEDF005CCDAE /* HT_Octahedron.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HT_Octahedron.m; sourceTree = "<group>"; };
+		329207622541DEDF005CCDAE /* HT_Tetrahedron.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HT_Tetrahedron.m; sourceTree = "<group>"; };
+		329207632541DEDF005CCDAE /* HT_Figure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HT_Figure.h; sourceTree = "<group>"; };
+		329207662541DEDF005CCDAE /* HT_Dodecahedron.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HT_Dodecahedron.h; sourceTree = "<group>"; };
+		329207672541DEDF005CCDAE /* HT_Cube.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HT_Cube.h; sourceTree = "<group>"; };
+		329207682541DEDF005CCDAE /* HT_Icosahedron.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HT_Icosahedron.h; sourceTree = "<group>"; };
+		329207692541DEDF005CCDAE /* HT_Octahedron.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HT_Octahedron.h; sourceTree = "<group>"; };
+		329207782541E0F3005CCDAE /* HT_Types.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HT_Types.h; sourceTree = "<group>"; };
+		32B1EC78254DC92A008DD719 /* LightDefs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LightDefs.h; sourceTree = "<group>"; };
+		32F5E2D32554A16500FE3AD0 /* Read_Me.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Read_Me.rtf; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		320D694B2540982900A590EB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		320D69452540982900A590EB = {
+			isa = PBXGroup;
+			children = (
+				32F5E2D32554A16500FE3AD0 /* Read_Me.rtf */,
+				320D69502540982900A590EB /* HitTest */,
+				320D694F2540982900A590EB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		320D694F2540982900A590EB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				320D694E2540982900A590EB /* HitTest.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		320D69502540982900A590EB /* HitTest */ = {
+			isa = PBXGroup;
+			children = (
+				320D696A2540A63900A590EB /* HT_AppDefs.h */,
+				320D69512540982900A590EB /* Strawboss.h */,
+				320D69522540982900A590EB /* Strawboss.m */,
+				320D69652540A08000A590EB /* Source */,
+				32284D28254C75630030C738 /* Texture Loader */,
+				32284D2E254C77360030C738 /* Texture Images */,
+				320D69542540982A00A590EB /* Assets.xcassets */,
+				32729B202546073100DB6663 /* AAPLMathUtilities */,
+				320D69562540982A00A590EB /* MainMenu.xib */,
+				320D69592540982A00A590EB /* Info.plist */,
+				320D695A2540982A00A590EB /* main.m */,
+				320D695C2540982A00A590EB /* HitTest.entitlements */,
+			);
+			path = HitTest;
+			sourceTree = "<group>";
+		};
+		320D69652540A08000A590EB /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				329207782541E0F3005CCDAE /* HT_Types.h */,
+				32B1EC78254DC92A008DD719 /* LightDefs.h */,
+				320D69662540A14E00A590EB /* HT_Renderer.h */,
+				320D69672540A14E00A590EB /* HT_Renderer.m */,
+				329207522541DB72005CCDAE /* HT_Scene.h */,
+				329207532541DB72005CCDAE /* HT_Scene.m */,
+				320ADF2B254754F800B657C7 /* HT_Shaders.metal */,
+				3292075A2541DEDF005CCDAE /* Geometry */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		32284D28254C75630030C738 /* Texture Loader */ = {
+			isa = PBXGroup;
+			children = (
+				32284D29254C75630030C738 /* HT_Textures.m */,
+				32284D2A254C75630030C738 /* HT_Textures.h */,
+			);
+			path = "Texture Loader";
+			sourceTree = "<group>";
+		};
+		32284D2E254C77360030C738 /* Texture Images */ = {
+			isa = PBXGroup;
+			children = (
+				32284D33254C77360030C738 /* Stainless.tif */,
+				32284D34254C77360030C738 /* Concrete.tif */,
+				32284D36254C77360030C738 /* Pebbles.jpg */,
+				32284D38254C77360030C738 /* Grey rough.tif */,
+				32284D39254C77360030C738 /* Wood.jpg */,
+				32284D3A254C77360030C738 /* Brass.jpg */,
+				32284D42254C77360030C738 /* Marble.jpg */,
+			);
+			path = "Texture Images";
+			sourceTree = "<group>";
+		};
+		32729B202546073100DB6663 /* AAPLMathUtilities */ = {
+			isa = PBXGroup;
+			children = (
+				32729B212546073100DB6663 /* AAPLMathUtilities.h */,
+				32729B222546073100DB6663 /* LICENSE.txt */,
+				32729B232546073100DB6663 /* AAPLMathUtilities.m */,
+			);
+			path = AAPLMathUtilities;
+			sourceTree = "<group>";
+		};
+		3292075A2541DEDF005CCDAE /* Geometry */ = {
+			isa = PBXGroup;
+			children = (
+				329207632541DEDF005CCDAE /* HT_Figure.h */,
+				3292075B2541DEDF005CCDAE /* HT_Tetrahedron.h */,
+				329207622541DEDF005CCDAE /* HT_Tetrahedron.m */,
+				329207672541DEDF005CCDAE /* HT_Cube.h */,
+				329207602541DEDF005CCDAE /* HT_Cube.m */,
+				329207692541DEDF005CCDAE /* HT_Octahedron.h */,
+				329207612541DEDF005CCDAE /* HT_Octahedron.m */,
+				329207662541DEDF005CCDAE /* HT_Dodecahedron.h */,
+				3292075C2541DEDF005CCDAE /* HT_Dodecahedron.m */,
+				329207682541DEDF005CCDAE /* HT_Icosahedron.h */,
+				3292075F2541DEDF005CCDAE /* HT_Icosahedron.m */,
+			);
+			path = Geometry;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		320D694D2540982900A590EB /* HitTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 320D695F2540982A00A590EB /* Build configuration list for PBXNativeTarget "HitTest" */;
+			buildPhases = (
+				320D694A2540982900A590EB /* Sources */,
+				320D694B2540982900A590EB /* Frameworks */,
+				320D694C2540982900A590EB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HitTest;
+			productName = HitTest;
+			productReference = 320D694E2540982900A590EB /* HitTest.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		320D69462540982900A590EB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1210;
+				TargetAttributes = {
+					320D694D2540982900A590EB = {
+						CreatedOnToolsVersion = 12.1;
+					};
+				};
+			};
+			buildConfigurationList = 320D69492540982900A590EB /* Build configuration list for PBXProject "HitTest" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 320D69452540982900A590EB;
+			productRefGroup = 320D694F2540982900A590EB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				320D694D2540982900A590EB /* HitTest */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		320D694C2540982900A590EB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				32284D53254C77360030C738 /* Brass.jpg in Resources */,
+				32F5E2D42554A16500FE3AD0 /* Read_Me.rtf in Resources */,
+				32729B242546073100DB6663 /* LICENSE.txt in Resources */,
+				32284D5B254C77360030C738 /* Marble.jpg in Resources */,
+				320D69552540982A00A590EB /* Assets.xcassets in Resources */,
+				32284D4F254C77360030C738 /* Pebbles.jpg in Resources */,
+				32284D4C254C77360030C738 /* Stainless.tif in Resources */,
+				32284D4D254C77360030C738 /* Concrete.tif in Resources */,
+				32284D52254C77360030C738 /* Wood.jpg in Resources */,
+				32284D51254C77360030C738 /* Grey rough.tif in Resources */,
+				320D69582540982A00A590EB /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		320D694A2540982900A590EB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3292076A2541DEDF005CCDAE /* HT_Dodecahedron.m in Sources */,
+				3292076E2541DEDF005CCDAE /* HT_Tetrahedron.m in Sources */,
+				3292076C2541DEDF005CCDAE /* HT_Cube.m in Sources */,
+				320D69682540A14E00A590EB /* HT_Renderer.m in Sources */,
+				320D695B2540982A00A590EB /* main.m in Sources */,
+				3292076D2541DEDF005CCDAE /* HT_Octahedron.m in Sources */,
+				320ADF2C254754F800B657C7 /* HT_Shaders.metal in Sources */,
+				32729B252546073100DB6663 /* AAPLMathUtilities.m in Sources */,
+				3292076B2541DEDF005CCDAE /* HT_Icosahedron.m in Sources */,
+				329207542541DB72005CCDAE /* HT_Scene.m in Sources */,
+				320D69532540982900A590EB /* Strawboss.m in Sources */,
+				32284D2B254C75630030C738 /* HT_Textures.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		320D69562540982A00A590EB /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				320D69572540982A00A590EB /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		320D695D2540982A00A590EB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		320D695E2540982A00A590EB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		320D69602540982A00A590EB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = HitTest/HitTest.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = TT7AHBA4Z2;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = HitTest/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.Ambraw.HitTest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		320D69612540982A00A590EB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = HitTest/HitTest.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = TT7AHBA4Z2;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = HitTest/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.Ambraw.HitTest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		320D69492540982900A590EB /* Build configuration list for PBXProject "HitTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				320D695D2540982A00A590EB /* Debug */,
+				320D695E2540982A00A590EB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		320D695F2540982A00A590EB /* Build configuration list for PBXNativeTarget "HitTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				320D69602540982A00A590EB /* Debug */,
+				320D69612540982A00A590EB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 320D69462540982900A590EB /* Project object */;
+}
