@@ -21,11 +21,14 @@
 
 #import "AAPLMathUtilities.h"
 
-// The figures are drawn to fit in a 1" sphere
+// The figures are defined to fit in a 1" sphere
 // The scene draws five of them across the x axis
 // so the scene needs to be scaled down by a factor of seven
 
 #define SCENE_SCALE (1.0/7.0)
+
+#define ROOT2  0.7071
+#define ROOT3  0.5773
 
 
 @implementation HT_Scene
@@ -60,6 +63,9 @@
     
     NSUInteger                  vertexCount[5],
                                 selection;
+    
+    vector_float3               axis[26];
+    FILE                        *randomDevice;
 }
 
 -(instancetype)initWithDevice: d;
@@ -115,6 +121,10 @@
         }
         
         [self initOffScreenView];
+        [self initAxes];
+        srandomdev();
+        randomDevice = fopen("/dev/random", "r");
+        
     }
     
     return self;
@@ -150,6 +160,12 @@
     uniform->strength = [DEF_STRENGTH floatValue];
 }
 
+// Compose transform matrixes( modelScale and scenePerspective ) to display the scene
+// within the largest square that fits in the screen viewport.
+// Also, compose transform matrixes( hitScale and pickPerspective ) to render the scene
+// in a PICK_TEXTURE_SIZE x PICK_TEXTURE_SIZE square in the off screen texture.
+// pickScaleFactor gives the conversion factor needed to go from screen coordinates to
+// pick texture coordinates.
 
 - (void)drawableSizeWillChange:(CGSize)size
 {
@@ -200,7 +216,7 @@
     
     for( n = 0 ; n < 5 ; n++ )
     {
-        uniform->orientationTransform[n] = nodeOrientation[n];
+        uniform->orientationTransform[n] = simd_mul(nodeRotation[n] , nodeOrientation[n]);
         
         uniform->modelTransform[n] = simd_mul(nodeRotation[n] , modelTranslation);
         uniform->modelTransform[n] = simd_mul(uniform->modelTransform[n] , modelScale );
@@ -269,7 +285,7 @@
             uniform->perspectiveTransform = pickPerspective;
             for( n = 0 ; n < 5 ; n++ )
             {
-                uniform->orientationTransform[n] = nodeOrientation[n];
+                uniform->orientationTransform[n] = simd_mul(nodeRotation[n] , nodeOrientation[n]);
                 
                 uniform->modelTransform[n] = simd_mul(nodeRotation[n] , modelTranslation);
                 uniform->modelTransform[n] = simd_mul(uniform->modelTransform[n] , hitScale );
@@ -300,7 +316,6 @@
             
             [renderEncoder endEncoding];
             
-            
             id<MTLBlitCommandEncoder> blitEncoder = [commandBuffer blitCommandEncoder];
             
             [blitEncoder synchronizeResource: pickTexture];
@@ -310,12 +325,14 @@
             [commandBuffer commit];
             [commandBuffer waitUntilCompleted];
             
-            // Transpose from top-left origin to center origin
+            // The center point of the screen viewport maps onto
+            // the center point of the off-screen viewport
             
+            // Transpose from top-left origin to center origin
             clickPoint.x -= viewportSize.width / 2.0;
             clickPoint.y = (viewportSize.height / 2.0) - clickPoint.y;
             
-            // Transpose from Sceen coordinates to texture coordinates
+            // Transpose from view coordinates to texture coordinates
             clickPoint.x *= pickScaleFactor;
             clickPoint.y *= pickScaleFactor;
             
@@ -323,7 +340,7 @@
             clickPoint.x = (PICK_TEXTURE_SIZE / 2.0) + clickPoint.x;
             clickPoint.y = (PICK_TEXTURE_SIZE / 2.0) - clickPoint.y;
             
-            // filter points outside of the texture frame
+            // filter points outside of the texture view
             if( clickPoint.x >= PICK_TEXTURE_SIZE)
                 clickPoint.x = PICK_TEXTURE_SIZE - 1;
             if( clickPoint.x <= 0)
@@ -345,29 +362,28 @@
             switch( hit[0] )
             {
                 case 0:
-                    comment = [NSString stringWithFormat: @"\nObject: Tetrahedron  Facet: %d\n\n", hit[1]];
+                    comment = [NSString stringWithFormat: @"\nObject: Tetrahedron\nFacet: %d\n", hit[1]];
                     break;
                     
                 case 1:
-                    comment = [NSString stringWithFormat: @"\nObject: Octahedron  Facet: %d\n\n", hit[1]];
+                    comment = [NSString stringWithFormat: @"\nObject: Octahedron\nFacet: %d\n", hit[1]];
                     break;
             
                 case 2:
-                    comment = [NSString stringWithFormat: @"\nObject: Icosahedron  Facet: %d\n\n", hit[1]];
+                    comment = [NSString stringWithFormat: @"\nObject: Icosahedron\nFacet: %d\n", hit[1]];
                     break;
             
                 case 3:
-                    comment = [NSString stringWithFormat: @"\nObject: Dodecahedron  Facet: %d\n\n", hit[1]];
+                    comment = [NSString stringWithFormat: @"\nObject: Dodecahedron\nFacet: %d\n", hit[1]];
                     break;
             
                 case 4:
-                    comment = [NSString stringWithFormat: @"\nObject: Cube  Facet: %d\n\n", hit[1]];
+                    comment = [NSString stringWithFormat: @"\nObject: Cube\nFacet: %d\n", hit[1]];
                     break;
                     
                 default:
                     selection = -1;
-                    comment = @"\nNo Hit\n\n";
-                            
+                    comment = @"\nNothing Hit\n\n";
             }
             
             [self report: comment];
@@ -376,22 +392,64 @@
     
 }
 
+-(void)initAxes
+{
+    NSInteger   n;
+    vector_float3   a[26] =
+    {
+        // C4 axes
+        { 1.0, 0.0, 0.0},
+        {-1.0, 0.0, 0.0},
+        { 0.0, 1.0, 0.0},
+        { 0.0,-1.0, 0.0},
+        { 0.0, 0.0, 1.0},
+        { 0.0, 0.0,-1.0},
+        //C2d axes
+        { ROOT2, ROOT2,   0.0},
+        {-ROOT2,-ROOT2,   0.0},
+        {-ROOT2, ROOT2,   0.0},
+        { ROOT2,-ROOT2,   0.0},
+        {   0.0, ROOT2,-ROOT2},
+        {   0.0,-ROOT2, ROOT2},
+        {   0.0, ROOT2, ROOT2},
+        {   0.0,-ROOT2,-ROOT2},
+        { ROOT2,   0.0, ROOT2},
+        {-ROOT2,   0.0,-ROOT2},
+        {-ROOT2,   0.0, ROOT2},
+        { ROOT2,   0.0,-ROOT2},
+        //C3 axes
+        { ROOT3, ROOT3, ROOT3},
+        {-ROOT3,-ROOT3,-ROOT3},
+        { ROOT3, ROOT3,-ROOT3},
+        {-ROOT3,-ROOT3, ROOT3},
+        {-ROOT3, ROOT3, ROOT3},
+        { ROOT3,-ROOT3,-ROOT3},
+        {-ROOT3, ROOT3,-ROOT3},
+        { ROOT3,-ROOT3, ROOT3}
+    };
+    
+    for(n=0;n<26;n++)
+        axis[n] = a[n];
+}
+
 -(void)initOffScreenView
 {
     MTLTextureDescriptor        *texDescriptor;
     NSError                     *error;
     id<MTLTexture>              depthTexture;
     
+    //Create the render target texture
     texDescriptor = [MTLTextureDescriptor new];
     texDescriptor.textureType = MTLTextureType2D;
     texDescriptor.width = PICK_TEXTURE_SIZE;
     texDescriptor.height = PICK_TEXTURE_SIZE;
-    texDescriptor.pixelFormat = MTLPixelFormatRGBA8Unorm;
+    texDescriptor.pixelFormat = MTLPixelFormatRGBA8Unorm;  //i.e. (uint8 [4])
     texDescriptor.storageMode = MTLStorageModeManaged;
     texDescriptor.usage = MTLTextureUsageRenderTarget;
     
     pickTexture = [device newTextureWithDescriptor: texDescriptor];
     
+    //Create the depth texture
     texDescriptor.textureType = MTLTextureType2D;
     texDescriptor.width = PICK_TEXTURE_SIZE;
     texDescriptor.height = PICK_TEXTURE_SIZE;
@@ -403,17 +461,14 @@
     
     pickRenderPassDescriptor = [MTLRenderPassDescriptor new];
     
-//    MTLRenderPassAttachmentDescriptor *d;
-//    d= pickRenderPassDescriptor.depthAttachment;
-    
     pickRenderPassDescriptor.colorAttachments[0].texture = pickTexture;
+    pickRenderPassDescriptor.depthAttachment.texture = depthTexture;
     pickRenderPassDescriptor.colorAttachments[0].loadAction = MTLLoadActionClear;
     pickRenderPassDescriptor.colorAttachments[0].clearColor = MTLClearColorMake( 1.0 , 1.0 , 1.0 , 1.0);
     pickRenderPassDescriptor.colorAttachments[0].storeAction = MTLStoreActionStore;
-    pickRenderPassDescriptor.depthAttachment.texture = depthTexture;
-    
     
     MTLDepthStencilDescriptor *depthStencilDesc = [[MTLDepthStencilDescriptor alloc] init];
+    
     depthStencilDesc.depthCompareFunction = MTLCompareFunctionLess;
     depthStencilDesc.depthWriteEnabled = YES;
     depthState = [device newDepthStencilStateWithDescriptor:depthStencilDesc];
@@ -430,6 +485,7 @@
     // Configure a pipeline descriptor that is used to create a pipeline state
     
     MTLRenderPipelineDescriptor *pipelineStateDescriptor    = [[MTLRenderPipelineDescriptor alloc] init];
+    
     pipelineStateDescriptor.label                           = @"Pick Pipeline";
     pipelineStateDescriptor.vertexFunction                  = vertexFunction;
     pipelineStateDescriptor.fragmentFunction                = fragmentFunction;
@@ -440,12 +496,23 @@
                                                                error: &error];
     if (!pickPipelineState)
     {
-        // Pipeline State creation could fail if we haven't properly set up our pipeline descriptor.
-        //  If the Metal API validation is enabled, we can find out more information about what
-        //  went wrong.  (Metal API validation is enabled by default when a debug build is run
-        //  from Xcode)
         NSLog(@"Failed to created pipeline state, error %@", error);
     }
+}
+
+// Return a crytographically secure random number
+-(uint64)random64
+{
+    uint64_t    value = 0;
+    int         i;
+    
+   for (i = 0 ; i < sizeof(value); i++)
+    {
+        value <<= 8;
+        value |= fgetc(randomDevice);
+    }
+    
+    return value;
 }
 
 // Relay text to StrawBoss

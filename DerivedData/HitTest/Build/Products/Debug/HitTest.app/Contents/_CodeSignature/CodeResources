@@ -32,6 +32,10 @@
 		<data>
 		+yP6Hyaod7nlYUjvZMLr/wc5EBY=
 		</data>
+		<key>Resources/Read_Me.rtf</key>
+		<data>
+		BPvlBidMdR9cta+3+jTdJv1T86c=
+		</data>
 		<key>Resources/Stainless.tif</key>
 		<data>
 		myjm0NyTSBBU1PU8i8b3nnuOeYo=
@@ -42,7 +46,7 @@
 		</data>
 		<key>Resources/default.metallib</key>
 		<data>
-		ZAUqZ/BipjCZe2AorB1kivnNxjQ=
+		vAjkTAF4Ui8b/81xhvFfHrg6zI8=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -96,6 +100,13 @@
 			skZZeY4kYtLxfgAt58fncY5DtQsXZq6Z8WamqOxKnQo=
 			</data>
 		</dict>
+		<key>Resources/Read_Me.rtf</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			rvF+0KiXUevEe5dh9fM/vNf3zelaJV/2PZoeuIfF/Dk=
+			</data>
+		</dict>
 		<key>Resources/Stainless.tif</key>
 		<dict>
 			<key>hash2</key>
@@ -114,7 +125,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			QQG+G3qyEP5LiOBPqLJLUcXI7dg3ef3NB8gXxldsctY=
+			dnMwsAIaor0QIOZnbzk/M9IblzdHXGAd9XxuDieVefY=
 			</data>
 		</dict>
 	</dict>

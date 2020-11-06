@@ -64,8 +64,7 @@
             
             [renderEncoder setDepthStencilState: ht_depthState];
             
-            [theScene drawScene: renderEncoder];
-            
+            [theScene drawScene: renderEncoder];            
             
             [renderEncoder endEncoding];
             

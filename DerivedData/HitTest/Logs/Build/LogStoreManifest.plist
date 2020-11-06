@@ -6,7 +6,7 @@
 	<integer>10</integer>
 	<key>logs</key>
 	<dict>
-		<key>30E22995-0600-483C-B119-34A374395F84</key>
+		<key>8B4B77D2-126E-4938-B026-6DEA746CD395</key>
 		<dict>
 			<key>className</key>
 			<string>IDEActivityLogSection</string>
@@ -15,7 +15,7 @@
 			<key>domainType</key>
 			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
 			<key>fileName</key>
-			<string>30E22995-0600-483C-B119-34A374395F84.xcactivitylog</string>
+			<string>8B4B77D2-126E-4938-B026-6DEA746CD395.xcactivitylog</string>
 			<key>hasPrimaryLog</key>
 			<true/>
 			<key>primaryObservable</key>
@@ -32,13 +32,47 @@
 			<key>signature</key>
 			<string>Build HitTest</string>
 			<key>timeStartedRecording</key>
-			<real>626301441.82151306</real>
+			<real>626365671.06974995</real>
 			<key>timeStoppedRecording</key>
-			<real>626301441.85775006</real>
+			<real>626365676.45174205</real>
 			<key>title</key>
 			<string>Build HitTest</string>
 			<key>uniqueIdentifier</key>
-			<string>30E22995-0600-483C-B119-34A374395F84</string>
+			<string>8B4B77D2-126E-4938-B026-6DEA746CD395</string>
+		</dict>
+		<key>DAEED2E7-9D87-4150-AEAD-07A55D5D025A</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>DAEED2E7-9D87-4150-AEAD-07A55D5D025A.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>HitTest project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>HitTest</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build HitTest</string>
+			<key>timeStartedRecording</key>
+			<real>626351427.58664</real>
+			<key>timeStoppedRecording</key>
+			<real>626351427.63722706</real>
+			<key>title</key>
+			<string>Build HitTest</string>
+			<key>uniqueIdentifier</key>
+			<string>DAEED2E7-9D87-4150-AEAD-07A55D5D025A</string>
 		</dict>
 	</dict>
 </dict>

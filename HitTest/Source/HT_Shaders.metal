@@ -148,7 +148,7 @@ pickVertexShader(uint vertexID [[vertex_id]],
     // Encode the object ID as a color
     
     out.color.r = vertices[vertexID].pickID / 255.0;  // (0 to 255) integer encoded as (0.0 to 1.0) float
-    out.color.g = vertices[vertexID].facet / 255.0;
+    out.color.g = vertices[vertexID].facet / 255.0;   // the rasterizer converts back when the color is stored in the texture
     out.color.b = 0.0;
     out.color.a = 1.0;
     
