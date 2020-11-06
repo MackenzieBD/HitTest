@@ -26,6 +26,7 @@
 // so the scene needs to be scaled down by a factor of seven
 
 #define SCENE_SCALE (1.0/7.0)
+#define ORBIT_PERIOD    30.0
 
 #define ROOT2  0.7071
 #define ROOT3  0.5773
@@ -46,8 +47,7 @@
     HT_Uniform                  *uniform;
     
     CGSize                      viewportSize;
-    matrix_float4x4             partialRotation,
-                                modelScale,
+    matrix_float4x4             modelScale,
                                 hitScale,
                                 modelRotation,
                                 modelTranslation,
@@ -65,6 +65,12 @@
                                 selection;
     
     vector_float3               axis[26];
+    
+    NSDate                      *startTime;
+    NSUInteger                  animTrigger,
+                                animAxis[5];
+    
+    
     FILE                        *randomDevice;
 }
 
@@ -84,8 +90,6 @@
         
         uniformBuffer = [device newBufferWithLength: sizeof(HT_Uniform) options: MTLResourceStorageModeShared ];
         uniform = [uniformBuffer contents];
-        
-        partialRotation = matrix4x4_identity();
         
         [self defaultLightModel];
         
@@ -121,16 +125,51 @@
         }
         
         [self initOffScreenView];
+        
         [self initAxes];
         srandomdev();
         randomDevice = fopen("/dev/random", "r");
+        
+        startTime = [[NSDate alloc] init];
+        animTrigger = 0;
         
     }
     
     return self;
 }
 
-
+-(void)animate
+{
+    NSTimeInterval      now;
+    float               angle;
+    NSUInteger          n,
+                        trigger;
+    
+    now = -[startTime timeIntervalSinceNow];
+    
+    trigger = 0;
+    while( now > ORBIT_PERIOD )
+    {
+        now -= ORBIT_PERIOD;
+        trigger++;
+    }
+    
+    if( trigger == animTrigger )
+    {
+        animTrigger++;
+        
+        animAxis[0] = animAxis[4] = [self random64] % 26;
+        animAxis[1] = animAxis[3] = [self random64] % 26;
+        animAxis[2] = [self random64] % 26;
+    }
+    
+    angle = 2.0 * M_PI * now / ORBIT_PERIOD;
+    
+    for( n = 0 ; n < 5 ; n++ )
+    {
+        nodeRotation[n] = matrix4x4_rotation( angle , axis[ animAxis[n] ]);
+    }
+}
 
 -(void)defaultLightModel
 {
@@ -203,8 +242,6 @@
         scenePerspective = matrix_perspective_left_hand(0.49, aspect, 20.0 , 200.0 );
         
         pickPerspective = matrix_perspective_left_hand(0.49, 1.0 , 20.0 , 200.0 );
-        
-        partialRotation = matrix4x4_identity();
     }
 }
 
@@ -212,13 +249,15 @@
 {
     NSUInteger       n;
     
+    [self animate];
+    
     uniform->perspectiveTransform = scenePerspective;
     
     for( n = 0 ; n < 5 ; n++ )
     {
         uniform->orientationTransform[n] = simd_mul(nodeRotation[n] , nodeOrientation[n]);
         
-        uniform->modelTransform[n] = simd_mul(nodeRotation[n] , modelTranslation);
+        uniform->modelTransform[n] = simd_mul(modelTranslation , nodeRotation[n] );
         uniform->modelTransform[n] = simd_mul(uniform->modelTransform[n] , modelScale );
         uniform->modelTransform[n] = simd_mul(uniform->modelTransform[n] , nodeTransform[n] );
         uniform->modelTransform[n] = simd_mul(uniform->modelTransform[n] , nodeOrientation[n] );
@@ -266,6 +305,8 @@
         
         commandBuffer.label = @"PickCommandBuffer";
         
+        [self animate];
+        
         if( pickRenderPassDescriptor != nil )
         {
             
@@ -287,7 +328,7 @@
             {
                 uniform->orientationTransform[n] = simd_mul(nodeRotation[n] , nodeOrientation[n]);
                 
-                uniform->modelTransform[n] = simd_mul(nodeRotation[n] , modelTranslation);
+                uniform->modelTransform[n] = simd_mul(modelTranslation , nodeRotation[n]);
                 uniform->modelTransform[n] = simd_mul(uniform->modelTransform[n] , hitScale );
                 uniform->modelTransform[n] = simd_mul(uniform->modelTransform[n] , nodeTransform[n] );
                 uniform->modelTransform[n] = simd_mul(uniform->modelTransform[n] , nodeOrientation[n] );
