@@ -32,9 +32,13 @@
 		<data>
 		+yP6Hyaod7nlYUjvZMLr/wc5EBY=
 		</data>
-		<key>Resources/Read_Me.rtf</key>
+		<key>Resources/Read_Me.rtfd/Pasted Graphic.tiff</key>
 		<data>
-		BPvlBidMdR9cta+3+jTdJv1T86c=
+		n4DVKSMayPCr4UJBM+hMwy9Z5SY=
+		</data>
+		<key>Resources/Read_Me.rtfd/TXT.rtf</key>
+		<data>
+		Vn9rveLCclDNTnA1wJVV9h8Uc1E=
 		</data>
 		<key>Resources/Stainless.tif</key>
 		<data>
@@ -46,7 +50,7 @@
 		</data>
 		<key>Resources/default.metallib</key>
 		<data>
-		IpmNcEB73PsoGyo4dzuQip+LJXE=
+		NFr7y/6F7uEwo8HJNfO2DTsz6EI=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -100,11 +104,18 @@
 			skZZeY4kYtLxfgAt58fncY5DtQsXZq6Z8WamqOxKnQo=
 			</data>
 		</dict>
-		<key>Resources/Read_Me.rtf</key>
+		<key>Resources/Read_Me.rtfd/Pasted Graphic.tiff</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			rvF+0KiXUevEe5dh9fM/vNf3zelaJV/2PZoeuIfF/Dk=
+			bD4zfB4vrd+p3yRaBVn5ZRTaB+aOdvKxjReomvY7WXU=
+			</data>
+		</dict>
+		<key>Resources/Read_Me.rtfd/TXT.rtf</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			wPQORZsWnVrSNakOBIPJrK4GfTkE2g1x+tFMR6HfOwc=
 			</data>
 		</dict>
 		<key>Resources/Stainless.tif</key>
@@ -125,7 +136,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			dKWwS63sMKe3sp9XAwePRmSNMfES8wN7wktX6yr4Suo=
+			iSSBzFVzQMgAdm8jqNfNw52Ir5E7UF4ERLNX4IwIcT0=
 			</data>
 		</dict>
 	</dict>

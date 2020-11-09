@@ -21,11 +21,11 @@
 
 #import "AAPLMathUtilities.h"
 
-// The figures are defined to fit in a 1 unit sphere
+// The figures are defined to fit in a 1 unit radius sphere
 // The scene draws five of them along the x axis
 // spaced 3 units apart at their centers.
 // so the scene needs to be scaled down by a factor of seven
-// to fit with a 1 unit sphere: 1 unit # 3 units # 3 units
+// to fit in a 1 unit radius sphere: 1 unit # 3 units # 3 units
 
 #define SCENE_SCALE         (1.0/7.0)
 
@@ -229,12 +229,12 @@
             sceneScale = matrix4x4_scale( factor * aspect, factor * aspect, factor * aspect );
         }
         
-        /// Constructs a symmetric perspective Projection Matrix
-        /// from left-handed Eye Coordinates to left-handed Clip Coordinates,
-        /// with a vertical viewing angle of fovyRadians, the specified aspect ratio,
-        /// and the provided absolute near and far Z distances from the eye.
+        // Constructs a symmetric perspective Projection Matrix
+        // from left-handed Eye Coordinates to left-handed Clip Coordinates,
+        // with a vertical viewing angle of fovyRadians, the specified aspect ratio,
+        // and the provided absolute near and far Z distances from the eye.
         //
-        //matrix_float4x4 AAPL_SIMD_OVERLOAD matrix_perspective_left_hand(float fovyRadians, float aspect, float nearZ, float farZ);
+        // matrix_float4x4 AAPL_SIMD_OVERLOAD matrix_perspective_left_hand(float fovyRadians, float aspect, float nearZ, float farZ);
         
         scenePerspective = matrix_perspective_left_hand(0.49, aspect, 20.0 , 33.0 );
         
@@ -247,8 +247,6 @@
     NSUInteger       n;
     
     [self animate];
-    
-    uniform->perspectiveTransform = scenePerspective;
     
 // For each node, compose the modelMatrix.
 //    1. initially centered on origin
@@ -266,6 +264,8 @@
         uniform->nodeTransform[n] = simd_mul(uniform->nodeTransform[n] , nodeTranslation[n] );
         uniform->nodeTransform[n] = simd_mul(uniform->nodeTransform[n] , nodeOrientation[n] );
     }
+    
+    uniform->perspectiveTransform = scenePerspective;
     
     [renderEncoder setVertexBuffer: uniformBuffer
                             offset: 0
