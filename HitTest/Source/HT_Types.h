@@ -30,8 +30,8 @@ typedef struct
 
 typedef struct
 {
-    matrix_float4x4 orientationTransform[5],
-                    modelTransform[5],
+    matrix_float4x4 normalsTransform[5],
+                    nodeTransform[5],
                     perspectiveTransform;
     vector_float3   ambient,
                     lightColor,

@@ -21,12 +21,16 @@
 
 #import "AAPLMathUtilities.h"
 
-// The figures are defined to fit in a 1" sphere
-// The scene draws five of them across the x axis
+// The figures are defined to fit in a 1 unit sphere
+// The scene draws five of them along the x axis
+// spaced 3 units apart at their centers.
 // so the scene needs to be scaled down by a factor of seven
+// to fit with a 1 unit sphere: 1 unit # 3 units # 3 units
 
-#define SCENE_SCALE (1.0/7.0)
-#define ORBIT_PERIOD    30.0
+#define SCENE_SCALE         (1.0/7.0)
+
+#define PICK_TEXTURE_SIZE   128
+#define ORBIT_PERIOD        20.0
 
 #define ROOT2  0.7071
 #define ROOT3  0.5773
@@ -47,14 +51,14 @@
     HT_Uniform                  *uniform;
     
     CGSize                      viewportSize;
-    matrix_float4x4             modelScale,
+    matrix_float4x4             sceneScale,
                                 hitScale,
                                 modelRotation,
-                                modelTranslation,
+                                sceneTranslation,
                                 scenePerspective,
                                 pickPerspective,
                                 nodeRotation[5],
-                                nodeTransform[5],
+                                nodeTranslation[5],
                                 nodeOrientation[5];
     
     float                       pickScaleFactor;
@@ -65,11 +69,8 @@
                                 selection;
     
     vector_float3               axis[26];
-    
     NSDate                      *startTime;
-    NSUInteger                  animTrigger,
-                                animAxis[5];
-    
+    NSUInteger                  animAxis[5];
     
     FILE                        *randomDevice;
 }
@@ -84,7 +85,7 @@
     if( self != nil )
     {
         device = d;
-        selection = 0;
+        selection = 2;
         
         theTextures = [[HT_Textures alloc] initWithMTLDevice: device];
         
@@ -103,22 +104,21 @@
         
         node[4] = [[HT_Cube alloc] initNode: 4];
         
-        modelTranslation = matrix4x4_translation( 0.0 , 0.0 , 26.66);
+        sceneTranslation = matrix4x4_translation( 0.0 , 0.0 , 26.641);
         
-        nodeTransform[0] = matrix4x4_translation( -6.0 , 0.0 , 0.0 );
-        nodeTransform[1] = matrix4x4_translation( -3.0 , 0.0 , 0.0 );
-        nodeTransform[2] = matrix4x4_translation( 0.0 , 0.0 , 0.0 );
-        nodeTransform[3] = matrix4x4_translation( 3.0 , 0.0 , 0.0 );
-        nodeTransform[4] = matrix4x4_translation( 6.0 , 0.0 , 0.0 );
+        nodeTranslation[0] = matrix4x4_translation( -6.0 , 0.0 , 0.0 );
+        nodeTranslation[1] = matrix4x4_translation( -3.0 , 0.0 , 0.0 );
+        nodeTranslation[2] = matrix4x4_translation( 0.0 , 0.0 , 0.0 );
+        nodeTranslation[3] = matrix4x4_translation( 3.0 , 0.0 , 0.0 );
+        nodeTranslation[4] = matrix4x4_translation( 6.0 , 0.0 , 0.0 );
         
         for( n = 0 ; n < 5 ; n++ ) 
         {
             item = [node[n] vertexData];
             vertexCount[n] = [item length] / sizeof(HT_Vertex);
-            vertexBuffer[n] = [device newBufferWithLength: [item length]
-                                                  options: MTLResourceStorageModeShared ];
-            
-            [item getBytes: [vertexBuffer[n] contents] length: [item length]];
+            vertexBuffer[n] = [device newBufferWithBytes: [item bytes]
+                                                  length: [item length]
+                                                 options: MTLResourceStorageModeShared];
             
             nodeRotation[n] = matrix4x4_identity();
             nodeOrientation[n] = matrix4x4_identity();
@@ -131,8 +131,6 @@
         randomDevice = fopen("/dev/random", "r");
         
         startTime = [[NSDate alloc] init];
-        animTrigger = 0;
-        
     }
     
     return self;
@@ -140,6 +138,7 @@
 
 -(void)animate
 {
+    static NSUInteger   animTrigger = 0;
     NSTimeInterval      now;
     float               angle;
     NSUInteger          n,
@@ -147,13 +146,10 @@
     
     now = -[startTime timeIntervalSinceNow];
     
-    trigger = 0;
-    while( now > ORBIT_PERIOD )
-    {
-        now -= ORBIT_PERIOD;
-        trigger++;
-    }
+    trigger = now / ORBIT_PERIOD;
+    now  -= trigger * ORBIT_PERIOD;
     
+    // If orbit complete--randomly pick rotation axes for next orbit
     if( trigger == animTrigger )
     {
         animTrigger++;
@@ -192,11 +188,11 @@
     
     uniform->eyeDirection = vector3( 0.0f , 0.0f , 1.0f );
     
-    uniform->constantAttenuation = [DEF_ATTEN0 floatValue];
-    uniform->linearAttenuation = [DEF_ATTEN1 floatValue];
-    uniform->quadradicAttenuation = [DEF_ATTEN2 floatValue];
-    uniform->shininess = [DEF_SHININESS floatValue];
-    uniform->strength = [DEF_STRENGTH floatValue];
+    uniform->constantAttenuation    = [DEF_ATTEN0 floatValue];
+    uniform->linearAttenuation      = [DEF_ATTEN1 floatValue];
+    uniform->quadradicAttenuation   = [DEF_ATTEN2 floatValue];
+    uniform->shininess              = [DEF_SHININESS floatValue];
+    uniform->strength               = [DEF_STRENGTH floatValue];
 }
 
 // Compose transform matrixes( modelScale and scenePerspective ) to display the scene
@@ -204,14 +200,15 @@
 // Also, compose transform matrixes( hitScale and pickPerspective ) to render the scene
 // in a PICK_TEXTURE_SIZE x PICK_TEXTURE_SIZE square in the off screen texture.
 // pickScaleFactor gives the conversion factor needed to go from screen coordinates to
-// pick texture coordinates.
+// pickTexture coordinates.
+// see Read_Me.rtfd for the derivation of the fustrum dimensions
 
 - (void)drawableSizeWillChange:(CGSize)size
 {
     float   aspect,
-            factor = 6.33 * SCENE_SCALE;
+            factor = 6.404 * SCENE_SCALE;
     
-    if(uniformBuffer != nil)  // Ignore calls until this class is initialized
+    if(uniformBuffer != nil)
     {
         viewportSize = size;
         aspect = size.width / size.height;
@@ -224,12 +221,12 @@
         if( aspect > 1.0 )
         {
             pickScaleFactor = PICK_TEXTURE_SIZE / size.height;
-            modelScale = matrix4x4_scale( factor, factor, factor );
+            sceneScale = matrix4x4_scale( factor, factor, factor );
         }
         else
         {
             pickScaleFactor = PICK_TEXTURE_SIZE / size.width;
-            modelScale = matrix4x4_scale( factor * aspect, factor * aspect, factor * aspect );
+            sceneScale = matrix4x4_scale( factor * aspect, factor * aspect, factor * aspect );
         }
         
         /// Constructs a symmetric perspective Projection Matrix
@@ -239,9 +236,9 @@
         //
         //matrix_float4x4 AAPL_SIMD_OVERLOAD matrix_perspective_left_hand(float fovyRadians, float aspect, float nearZ, float farZ);
         
-        scenePerspective = matrix_perspective_left_hand(0.49, aspect, 20.0 , 200.0 );
+        scenePerspective = matrix_perspective_left_hand(0.49, aspect, 20.0 , 33.0 );
         
-        pickPerspective = matrix_perspective_left_hand(0.49, 1.0 , 20.0 , 200.0 );
+        pickPerspective = matrix_perspective_left_hand(0.49, 1.0 , 20.0 , 33.0 );
     }
 }
 
@@ -253,14 +250,21 @@
     
     uniform->perspectiveTransform = scenePerspective;
     
+// For each node, compose the modelMatrix.
+//    1. initially centered on origin
+//    2. orient the node
+//    3. translate the node to its place in the scene
+//    4. scale the scene to fit in the viewing volume
+//    5. rotate the node (animation);
+//    6. translate the scene from the origin into the viewing volume.
     for( n = 0 ; n < 5 ; n++ )
     {
-        uniform->orientationTransform[n] = simd_mul(nodeRotation[n] , nodeOrientation[n]);
+        uniform->normalsTransform[n] = simd_mul(nodeRotation[n] , nodeOrientation[n]);
         
-        uniform->modelTransform[n] = simd_mul(modelTranslation , nodeRotation[n] );
-        uniform->modelTransform[n] = simd_mul(uniform->modelTransform[n] , modelScale );
-        uniform->modelTransform[n] = simd_mul(uniform->modelTransform[n] , nodeTransform[n] );
-        uniform->modelTransform[n] = simd_mul(uniform->modelTransform[n] , nodeOrientation[n] );
+        uniform->nodeTransform[n] = simd_mul(sceneTranslation , nodeRotation[n] );
+        uniform->nodeTransform[n] = simd_mul(uniform->nodeTransform[n] , sceneScale );
+        uniform->nodeTransform[n] = simd_mul(uniform->nodeTransform[n] , nodeTranslation[n] );
+        uniform->nodeTransform[n] = simd_mul(uniform->nodeTransform[n] , nodeOrientation[n] );
     }
     
     [renderEncoder setVertexBuffer: uniformBuffer
@@ -291,7 +295,15 @@
     }
 }
 
--(void)hitTest:(NSPoint)clickPoint
+// This routine renders the scene to an off screen texture.  The shader
+// does not apply a texture or lighting to the primatives.  Rather, it
+// assigns them a "color" encoding the pickID of the object and the facet
+// number of the facet of which the primative is a part.
+//
+// The "color" of the pixle under the click point is then read giving which if any
+// primative was hit.
+
+-(void)hitTest: (NSPoint)clickPoint
   commandQueue: (id<MTLCommandQueue>)queue
 {
     NSUInteger  n;
@@ -304,8 +316,6 @@
         [commandBuffer enqueue];
         
         commandBuffer.label = @"PickCommandBuffer";
-        
-        [self animate];
         
         if( pickRenderPassDescriptor != nil )
         {
@@ -324,14 +334,15 @@
             [renderEncoder setDepthStencilState: depthState];
             
             uniform->perspectiveTransform = pickPerspective;
+            
             for( n = 0 ; n < 5 ; n++ )
             {
-                uniform->orientationTransform[n] = simd_mul(nodeRotation[n] , nodeOrientation[n]);
+                uniform->normalsTransform[n] = simd_mul(nodeRotation[n] , nodeOrientation[n]);
                 
-                uniform->modelTransform[n] = simd_mul(modelTranslation , nodeRotation[n]);
-                uniform->modelTransform[n] = simd_mul(uniform->modelTransform[n] , hitScale );
-                uniform->modelTransform[n] = simd_mul(uniform->modelTransform[n] , nodeTransform[n] );
-                uniform->modelTransform[n] = simd_mul(uniform->modelTransform[n] , nodeOrientation[n] );
+                uniform->nodeTransform[n] = simd_mul(sceneTranslation , nodeRotation[n]);
+                uniform->nodeTransform[n] = simd_mul(uniform->nodeTransform[n] , hitScale );
+                uniform->nodeTransform[n] = simd_mul(uniform->nodeTransform[n] , nodeTranslation[n] );
+                uniform->nodeTransform[n] = simd_mul(uniform->nodeTransform[n] , nodeOrientation[n] );
             }
                         
             [renderEncoder setVertexBuffer: uniformBuffer
@@ -373,7 +384,7 @@
             clickPoint.x -= viewportSize.width / 2.0;
             clickPoint.y = (viewportSize.height / 2.0) - clickPoint.y;
             
-            // Transpose from view coordinates to texture coordinates
+            // Transpose from screen coordinates to texture coordinates
             clickPoint.x *= pickScaleFactor;
             clickPoint.y *= pickScaleFactor;
             
@@ -384,10 +395,13 @@
             // filter points outside of the texture view
             if( clickPoint.x >= PICK_TEXTURE_SIZE)
                 clickPoint.x = PICK_TEXTURE_SIZE - 1;
+            
             if( clickPoint.x <= 0)
                 clickPoint.x = 1;
+            
             if( clickPoint.y >= PICK_TEXTURE_SIZE)
                 clickPoint.y = PICK_TEXTURE_SIZE - 1;
+            
             if( clickPoint.y <= 0 )
                 clickPoint.y = 1;
             
@@ -396,35 +410,18 @@
                        fromRegion: MTLRegionMake2D( clickPoint.x ,  clickPoint.y , 1, 1)
                       mipmapLevel: 0];
             
-            selection = hit[0];
             
             NSString *comment;
             
-            switch( hit[0] )
+            if( hit[0] < 5 )
             {
-                case 0:
-                    comment = [NSString stringWithFormat: @"\nObject: Tetrahedron\nFacet: %d\n", hit[1]];
-                    break;
-                    
-                case 1:
-                    comment = [NSString stringWithFormat: @"\nObject: Octahedron\nFacet: %d\n", hit[1]];
-                    break;
-            
-                case 2:
-                    comment = [NSString stringWithFormat: @"\nObject: Icosahedron\nFacet: %d\n", hit[1]];
-                    break;
-            
-                case 3:
-                    comment = [NSString stringWithFormat: @"\nObject: Dodecahedron\nFacet: %d\n", hit[1]];
-                    break;
-            
-                case 4:
-                    comment = [NSString stringWithFormat: @"\nObject: Cube\nFacet: %d\n", hit[1]];
-                    break;
-                    
-                default:
-                    selection = -1;
-                    comment = @"\nNothing Hit\n\n";
+                selection = hit[0];
+                comment = [NSString stringWithFormat: @"\nObject: %@\nFacet: %d\n", node[selection], hit[1]];
+            }
+            else
+            {
+                selection = -1;
+                comment = @"\nNothing Hit\n\n";
             }
             
             [self report: comment];
@@ -432,6 +429,8 @@
     }
     
 }
+
+//Symmetry axes of a cube
 
 -(void)initAxes
 {
@@ -481,32 +480,33 @@
     
     //Create the render target texture
     texDescriptor = [MTLTextureDescriptor new];
-    texDescriptor.textureType = MTLTextureType2D;
-    texDescriptor.width = PICK_TEXTURE_SIZE;
-    texDescriptor.height = PICK_TEXTURE_SIZE;
-    texDescriptor.pixelFormat = MTLPixelFormatRGBA8Unorm;  //i.e. (uint8 [4])
-    texDescriptor.storageMode = MTLStorageModeManaged;
-    texDescriptor.usage = MTLTextureUsageRenderTarget;
+    
+    texDescriptor.textureType   = MTLTextureType2D;
+    texDescriptor.width         = PICK_TEXTURE_SIZE;
+    texDescriptor.height        = PICK_TEXTURE_SIZE;
+    texDescriptor.pixelFormat   = MTLPixelFormatRGBA8Unorm;  //i.e. (uint8 [4])
+    texDescriptor.storageMode   = MTLStorageModeManaged;
+    texDescriptor.usage         = MTLTextureUsageRenderTarget;
     
     pickTexture = [device newTextureWithDescriptor: texDescriptor];
     
     //Create the depth texture
-    texDescriptor.textureType = MTLTextureType2D;
-    texDescriptor.width = PICK_TEXTURE_SIZE;
-    texDescriptor.height = PICK_TEXTURE_SIZE;
-    texDescriptor.pixelFormat = MTLPixelFormatDepth32Float;
-    texDescriptor.storageMode = MTLStorageModePrivate;
-    texDescriptor.usage = MTLTextureUsageRenderTarget;
+    texDescriptor.textureType   = MTLTextureType2D;
+    texDescriptor.width         = PICK_TEXTURE_SIZE;
+    texDescriptor.height        = PICK_TEXTURE_SIZE;
+    texDescriptor.pixelFormat   = MTLPixelFormatDepth32Float;
+    texDescriptor.storageMode   = MTLStorageModePrivate;
+    texDescriptor.usage         = MTLTextureUsageRenderTarget;
     
     depthTexture = [device newTextureWithDescriptor: texDescriptor];
     
     pickRenderPassDescriptor = [MTLRenderPassDescriptor new];
     
-    pickRenderPassDescriptor.colorAttachments[0].texture = pickTexture;
-    pickRenderPassDescriptor.depthAttachment.texture = depthTexture;
-    pickRenderPassDescriptor.colorAttachments[0].loadAction = MTLLoadActionClear;
-    pickRenderPassDescriptor.colorAttachments[0].clearColor = MTLClearColorMake( 1.0 , 1.0 , 1.0 , 1.0);
-    pickRenderPassDescriptor.colorAttachments[0].storeAction = MTLStoreActionStore;
+    pickRenderPassDescriptor.colorAttachments[0].texture        = pickTexture;
+    pickRenderPassDescriptor.depthAttachment.texture            = depthTexture;
+    pickRenderPassDescriptor.colorAttachments[0].loadAction     = MTLLoadActionClear;
+    pickRenderPassDescriptor.colorAttachments[0].clearColor     = MTLClearColorMake( 1.0 , 1.0 , 1.0 , 1.0);
+    pickRenderPassDescriptor.colorAttachments[0].storeAction    = MTLStoreActionStore;
     
     MTLDepthStencilDescriptor *depthStencilDesc = [[MTLDepthStencilDescriptor alloc] init];
     

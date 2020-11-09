@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(void)drawScene: (id<MTLRenderCommandEncoder>)renderEncoder;
 
--(void)hitTest: (NSPoint)clipPoint
+-(void)hitTest: (NSPoint)clickPoint
   commandQueue: (id<MTLCommandQueue>)queue;
 
 

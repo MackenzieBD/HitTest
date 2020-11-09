@@ -80,6 +80,7 @@
 -(void)initDepthAndStencilState
 {
     metalView.depthStencilPixelFormat = MTLPixelFormatDepth32Float;
+    
     MTLDepthStencilDescriptor *depthStencilDesc = [[MTLDepthStencilDescriptor alloc] init];
     depthStencilDesc.depthCompareFunction = MTLCompareFunctionLess;
     depthStencilDesc.depthWriteEnabled = YES;
@@ -103,11 +104,12 @@
     
     // Configure a pipeline descriptor that is used to create a pipeline state
     MTLRenderPipelineDescriptor *pipelineStateDescriptor = [[MTLRenderPipelineDescriptor alloc] init];
-    pipelineStateDescriptor.label = @"Textured Pipeline";
-    pipelineStateDescriptor.vertexFunction = vertexFunction;
-    pipelineStateDescriptor.fragmentFunction = fragmentFunction;
-    pipelineStateDescriptor.colorAttachments[0].pixelFormat = metalView.colorPixelFormat;
-    pipelineStateDescriptor.depthAttachmentPixelFormat      = MTLPixelFormatDepth32Float;
+    
+    pipelineStateDescriptor.label                               = @"Textured Pipeline";
+    pipelineStateDescriptor.vertexFunction                      = vertexFunction;
+    pipelineStateDescriptor.fragmentFunction                    = fragmentFunction;
+    pipelineStateDescriptor.colorAttachments[0].pixelFormat     = metalView.colorPixelFormat;
+    pipelineStateDescriptor.depthAttachmentPixelFormat          = MTLPixelFormatDepth32Float;
     
     ht_pipelineState = [ht_device newRenderPipelineStateWithDescriptor:pipelineStateDescriptor
                                                                  error:&error];
@@ -152,9 +154,7 @@
     sampler = [ht_device newSamplerStateWithDescriptor:desc];
 }
 
-// view controller methods
-
--(void)mouseUp:(NSEvent *)event
+-(void)mouseDown:(NSEvent *)event
 {
     NSPoint hitPoint;
     
@@ -206,7 +206,7 @@
     ht_device = metalView.device;
     
     
-    metalView.colorPixelFormat        = MTLPixelFormatBGRA8Unorm_sRGB;
+    metalView.colorPixelFormat = MTLPixelFormatBGRA8Unorm_sRGB;
     metalView.clearColor = clearColor;
     
     [self initSamplers];

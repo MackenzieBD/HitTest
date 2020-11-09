@@ -21,6 +21,7 @@
 		32284D52254C77360030C738 /* Wood.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 32284D39254C77360030C738 /* Wood.jpg */; };
 		32284D53254C77360030C738 /* Brass.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 32284D3A254C77360030C738 /* Brass.jpg */; };
 		32284D5B254C77360030C738 /* Marble.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 32284D42254C77360030C738 /* Marble.jpg */; };
+		325900C725586A630066800C /* Read_Me.rtfd in Resources */ = {isa = PBXBuildFile; fileRef = 325900C625586A630066800C /* Read_Me.rtfd */; };
 		32729B242546073100DB6663 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 32729B222546073100DB6663 /* LICENSE.txt */; };
 		32729B252546073100DB6663 /* AAPLMathUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 32729B232546073100DB6663 /* AAPLMathUtilities.m */; };
 		329207542541DB72005CCDAE /* HT_Scene.m in Sources */ = {isa = PBXBuildFile; fileRef = 329207532541DB72005CCDAE /* HT_Scene.m */; };
@@ -29,7 +30,6 @@
 		3292076C2541DEDF005CCDAE /* HT_Cube.m in Sources */ = {isa = PBXBuildFile; fileRef = 329207602541DEDF005CCDAE /* HT_Cube.m */; };
 		3292076D2541DEDF005CCDAE /* HT_Octahedron.m in Sources */ = {isa = PBXBuildFile; fileRef = 329207612541DEDF005CCDAE /* HT_Octahedron.m */; };
 		3292076E2541DEDF005CCDAE /* HT_Tetrahedron.m in Sources */ = {isa = PBXBuildFile; fileRef = 329207622541DEDF005CCDAE /* HT_Tetrahedron.m */; };
-		32F5E2D42554A16500FE3AD0 /* Read_Me.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 32F5E2D32554A16500FE3AD0 /* Read_Me.rtf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +54,7 @@
 		32284D39254C77360030C738 /* Wood.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Wood.jpg; sourceTree = "<group>"; };
 		32284D3A254C77360030C738 /* Brass.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Brass.jpg; sourceTree = "<group>"; };
 		32284D42254C77360030C738 /* Marble.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Marble.jpg; sourceTree = "<group>"; };
+		325900C625586A630066800C /* Read_Me.rtfd */ = {isa = PBXFileReference; lastKnownFileType = wrapper.rtfd; path = Read_Me.rtfd; sourceTree = "<group>"; };
 		32729B212546073100DB6663 /* AAPLMathUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAPLMathUtilities.h; sourceTree = "<group>"; };
 		32729B222546073100DB6663 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		32729B232546073100DB6663 /* AAPLMathUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAPLMathUtilities.m; sourceTree = "<group>"; };
@@ -72,7 +73,6 @@
 		329207692541DEDF005CCDAE /* HT_Octahedron.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HT_Octahedron.h; sourceTree = "<group>"; };
 		329207782541E0F3005CCDAE /* HT_Types.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HT_Types.h; sourceTree = "<group>"; };
 		32B1EC78254DC92A008DD719 /* LightDefs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LightDefs.h; sourceTree = "<group>"; };
-		32F5E2D32554A16500FE3AD0 /* Read_Me.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Read_Me.rtf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,7 +89,7 @@
 		320D69452540982900A590EB = {
 			isa = PBXGroup;
 			children = (
-				32F5E2D32554A16500FE3AD0 /* Read_Me.rtf */,
+				325900C625586A630066800C /* Read_Me.rtfd */,
 				320D69502540982900A590EB /* HitTest */,
 				320D694F2540982900A590EB /* Products */,
 			);
@@ -245,12 +245,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				32284D53254C77360030C738 /* Brass.jpg in Resources */,
-				32F5E2D42554A16500FE3AD0 /* Read_Me.rtf in Resources */,
 				32729B242546073100DB6663 /* LICENSE.txt in Resources */,
 				32284D5B254C77360030C738 /* Marble.jpg in Resources */,
 				320D69552540982A00A590EB /* Assets.xcassets in Resources */,
 				32284D4F254C77360030C738 /* Pebbles.jpg in Resources */,
 				32284D4C254C77360030C738 /* Stainless.tif in Resources */,
+				325900C725586A630066800C /* Read_Me.rtfd in Resources */,
 				32284D4D254C77360030C738 /* Concrete.tif in Resources */,
 				32284D52254C77360030C738 /* Wood.jpg in Resources */,
 				32284D51254C77360030C738 /* Grey rough.tif in Resources */,

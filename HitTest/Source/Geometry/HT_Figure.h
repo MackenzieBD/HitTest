@@ -1,5 +1,5 @@
 //
-//  HT_Polyhedron.h
+//  HT_Figure.h
 //  HitTest
 //
 //  Created by Bruce D MacKenzie on 9/13/19.

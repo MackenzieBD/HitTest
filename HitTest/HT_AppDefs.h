@@ -9,6 +9,5 @@
 #define HT_AppDefs_h
 
 #define REPORT  @"Report to Strawboss"
-#define PICK_TEXTURE_SIZE   128
 
 #endif /* HT_AppDefs_h */

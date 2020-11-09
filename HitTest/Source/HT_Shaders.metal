@@ -42,7 +42,7 @@ vertexTexShader(uint vertexID [[vertex_id]],
     
     vector_float4  newPosition = float4( vertices[vertexID].position , 1 );
     
-    newPosition = param->modelTransform[vertices[vertexID].pickID] * newPosition;
+    newPosition = param->nodeTransform[ vertices[vertexID].pickID ] * newPosition;
     out.eyeSpacePosition = newPosition;
     
     newPosition = param->perspectiveTransform * newPosition;
@@ -51,7 +51,7 @@ vertexTexShader(uint vertexID [[vertex_id]],
     // Apply rotations about the origin to the normals
     
     vector_float4 newNormal = float4( vertices[vertexID].normal , 1);
-    out.normal = param->orientationTransform[vertices[vertexID].pickID] * newNormal;
+    out.normal = param->normalsTransform[vertices[vertexID].pickID] * newNormal;
     
     out.textureCoordinate = vertices[vertexID].textCoor;
     
@@ -122,11 +122,9 @@ fragment float4 fragmentTexShader(RasterizerData in [[stage_in]],
 
 typedef struct
 {
-    
     float4  clipSpacePosition [[position]];
     float4  eyeSpacePosition;
-    float4  color;
-    
+    float4  color;    
 } pickData;
 
 // Vertex function for rendering a simplified scene to a hit test texture
@@ -139,7 +137,7 @@ pickVertexShader(uint vertexID [[vertex_id]],
     
     vector_float4  newPosition = float4( vertices[vertexID].position , 1 );
     
-    newPosition = param->modelTransform[vertices[vertexID].pickID] * newPosition;
+    newPosition = param->nodeTransform[ vertices[vertexID].pickID ] * newPosition;
     out.eyeSpacePosition = newPosition;
     
     newPosition = param->perspectiveTransform * newPosition;
