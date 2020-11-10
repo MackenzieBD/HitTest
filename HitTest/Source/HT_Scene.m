@@ -201,7 +201,7 @@
 // in a PICK_TEXTURE_SIZE x PICK_TEXTURE_SIZE square in the off screen texture.
 // pickScaleFactor gives the conversion factor needed to go from screen coordinates to
 // pickTexture coordinates.
-// see Read_Me.rtfd for the derivation of the fustrum dimensions
+// see fustrum.jpg for the derivation of the fustrum dimensions
 
 - (void)drawableSizeWillChange:(CGSize)size
 {
@@ -255,6 +255,7 @@
 //    4. scale the scene to fit in the viewing volume
 //    5. rotate the node (animation);
 //    6. translate the scene from the origin into the viewing volume.
+    
     for( n = 0 ; n < 5 ; n++ )
     {
         uniform->normalsTransform[n] = simd_mul(nodeRotation[n] , nodeOrientation[n]);
@@ -333,6 +334,8 @@
             
             [renderEncoder setDepthStencilState: depthState];
             
+            //Compose transform matrixes to position the scene within the viewing volume.
+            
             uniform->perspectiveTransform = pickPerspective;
             
             for( n = 0 ; n < 5 ; n++ )
@@ -352,6 +355,9 @@
             [renderEncoder setFragmentBuffer: uniformBuffer
                                       offset: 0
                                      atIndex: HT_Uniform_Index];
+            
+            
+            // Draw the five solids
             
             for( n = 0 ; n < 5 ; n++ )
             {

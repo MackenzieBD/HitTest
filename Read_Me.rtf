@@ -1,5 +1,20 @@
-{\rtf1\ansi\ansicpg1252\cocoartf949
-{\fonttbl}
-{\colortbl;\red255\green255\blue255;}
-\margl1440\margr1440\vieww9000\viewh8400\viewkind0
-}
+{\rtf1\ansi\ansicpg1252\cocoartf2513
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red255\green255\blue255;\red170\green13\blue145;
+\red15\green104\blue160;}
+{\*\expandedcolortbl;;\csgenericrgb\c0\c0\c0;\csgenericrgb\c100000\c100000\c100000;\csgenericrgb\c66500\c5200\c56900;
+\csgenericrgb\c5882\c40784\c62745;}
+\margl1440\margr1440\vieww31660\viewh19640\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ri-800\pardirnatural\partightenfactor0
+
+\f0\fs28 \cf0 HitTest is a XCode project in Objective C implementing Hit Testing/Mouse Picking in a Metal view. The approach taken is to render the view contents in an offscreen texture.  In the offscreen texture each object is rendered in a psuedo "color" which encodes the ID of the object.  This color can then be read at the click point identifying which if any of the objects was clicked.\
+\
+The program displays the five platonic solids in an MTKView.  The vertex data(see HT_Types.h) for these solids are defined in the classes contained in the Geometry group of the project.  The vertex data includes two fields; pickID and facet, which give the polyhedron and the facet of the object that the vertex is a part of.  The off screen  vertex shader(see 
+\f1\fs30 \cf2 \cb3 pickVertexShader in HT_Shaders.metal)
+\f0\fs28 \cf0 \cb1  converts these to a psuedo color which is output to the rasterizer and rendered to the off screen texture.\
+\
+The off screen texture is set up in the    
+\f1\fs30 \cf2 \cb3 -(\cf4 void\cf2 )\cf5 initOffScreenView 
+\f0\fs28 \cf0 \cb1    method of the HT_Scene class.  A mouse click in the MTKView is ultimately dispatched to the 
+\f1 \cf2 \cb3 -(\cf4 void\cf2 )\cf5 hitTest\cf2 : \'85 
+\f0 \cf0 \cb1 method of the HT_Scene class.  This method renders the scene to the off screen texture and reads the psuedo color at the hit coordinates.  The result is printed in the NSTextView of the window split view and the highlighting in the MTKView is set accordingly.}
