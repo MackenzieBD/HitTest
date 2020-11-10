@@ -89,7 +89,9 @@
         
         theTextures = [[HT_Textures alloc] initWithMTLDevice: device];
         
-        uniformBuffer = [device newBufferWithLength: sizeof(HT_Uniform) options: MTLResourceStorageModeShared ];
+        uniformBuffer = [device newBufferWithLength: sizeof(HT_Uniform)
+                                            options: MTLResourceStorageModeShared ];
+        
         uniform = [uniformBuffer contents];
         
         [self defaultLightModel];
@@ -427,7 +429,7 @@
             else
             {
                 selection = -1;
-                comment = @"\nNothing Hit\n\n";
+                comment = @"\nObject: None\n\n";
             }
             
             [self report: comment];

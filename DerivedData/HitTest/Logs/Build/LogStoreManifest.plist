@@ -6,7 +6,7 @@
 	<integer>10</integer>
 	<key>logs</key>
 	<dict>
-		<key>3FE8C573-3E58-4890-8C56-BBED4E168E1A</key>
+		<key>017EB6C7-FB02-4A7F-B641-CC02AB710F17</key>
 		<dict>
 			<key>className</key>
 			<string>IDEActivityLogSection</string>
@@ -15,7 +15,7 @@
 			<key>domainType</key>
 			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
 			<key>fileName</key>
-			<string>3FE8C573-3E58-4890-8C56-BBED4E168E1A.xcactivitylog</string>
+			<string>017EB6C7-FB02-4A7F-B641-CC02AB710F17.xcactivitylog</string>
 			<key>hasPrimaryLog</key>
 			<true/>
 			<key>primaryObservable</key>
@@ -32,13 +32,81 @@
 			<key>signature</key>
 			<string>Build HitTest</string>
 			<key>timeStartedRecording</key>
-			<real>626668591.75034499</real>
+			<real>626707382.66711199</real>
 			<key>timeStoppedRecording</key>
-			<real>626668592.48225796</real>
+			<real>626707384.17704105</real>
 			<key>title</key>
 			<string>Build HitTest</string>
 			<key>uniqueIdentifier</key>
-			<string>3FE8C573-3E58-4890-8C56-BBED4E168E1A</string>
+			<string>017EB6C7-FB02-4A7F-B641-CC02AB710F17</string>
+		</dict>
+		<key>B7DF2B0E-AE75-4C99-9557-53C8DE48EEDA</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>B7DF2B0E-AE75-4C99-9557-53C8DE48EEDA.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>HitTest project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>HitTest</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build HitTest</string>
+			<key>timeStartedRecording</key>
+			<real>626716978.25508499</real>
+			<key>timeStoppedRecording</key>
+			<real>626716979.46158504</real>
+			<key>title</key>
+			<string>Build HitTest</string>
+			<key>uniqueIdentifier</key>
+			<string>B7DF2B0E-AE75-4C99-9557-53C8DE48EEDA</string>
+		</dict>
+		<key>C4BB3BAC-D716-40EC-A84E-ADEBA6ADF542</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>C4BB3BAC-D716-40EC-A84E-ADEBA6ADF542.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>HitTest project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>HitTest</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build HitTest</string>
+			<key>timeStartedRecording</key>
+			<real>626698029.92497206</real>
+			<key>timeStoppedRecording</key>
+			<real>626698031.15078402</real>
+			<key>title</key>
+			<string>Build HitTest</string>
+			<key>uniqueIdentifier</key>
+			<string>C4BB3BAC-D716-40EC-A84E-ADEBA6ADF542</string>
 		</dict>
 	</dict>
 </dict>

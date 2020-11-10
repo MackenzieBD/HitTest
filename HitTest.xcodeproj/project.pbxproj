@@ -14,11 +14,6 @@
 		320D695B2540982A00A590EB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 320D695A2540982A00A590EB /* main.m */; };
 		320D69682540A14E00A590EB /* HT_Renderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 320D69672540A14E00A590EB /* HT_Renderer.m */; };
 		32284D2B254C75630030C738 /* HT_Textures.m in Sources */ = {isa = PBXBuildFile; fileRef = 32284D29254C75630030C738 /* HT_Textures.m */; };
-		32284D4C254C77360030C738 /* Stainless.tif in Resources */ = {isa = PBXBuildFile; fileRef = 32284D33254C77360030C738 /* Stainless.tif */; };
-		32284D4D254C77360030C738 /* Concrete.tif in Resources */ = {isa = PBXBuildFile; fileRef = 32284D34254C77360030C738 /* Concrete.tif */; };
-		32284D4F254C77360030C738 /* Pebbles.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 32284D36254C77360030C738 /* Pebbles.jpg */; };
-		32284D51254C77360030C738 /* Grey rough.tif in Resources */ = {isa = PBXBuildFile; fileRef = 32284D38254C77360030C738 /* Grey rough.tif */; };
-		32284D52254C77360030C738 /* Wood.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 32284D39254C77360030C738 /* Wood.jpg */; };
 		32284D53254C77360030C738 /* Brass.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 32284D3A254C77360030C738 /* Brass.jpg */; };
 		32284D5B254C77360030C738 /* Marble.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 32284D42254C77360030C738 /* Marble.jpg */; };
 		32729B242546073100DB6663 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 32729B222546073100DB6663 /* LICENSE.txt */; };
@@ -46,11 +41,6 @@
 		320D696A2540A63900A590EB /* HT_AppDefs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HT_AppDefs.h; sourceTree = "<group>"; };
 		32284D29254C75630030C738 /* HT_Textures.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HT_Textures.m; sourceTree = "<group>"; };
 		32284D2A254C75630030C738 /* HT_Textures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HT_Textures.h; sourceTree = "<group>"; };
-		32284D33254C77360030C738 /* Stainless.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Stainless.tif; sourceTree = "<group>"; };
-		32284D34254C77360030C738 /* Concrete.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Concrete.tif; sourceTree = "<group>"; };
-		32284D36254C77360030C738 /* Pebbles.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Pebbles.jpg; sourceTree = "<group>"; };
-		32284D38254C77360030C738 /* Grey rough.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "Grey rough.tif"; sourceTree = "<group>"; };
-		32284D39254C77360030C738 /* Wood.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Wood.jpg; sourceTree = "<group>"; };
 		32284D3A254C77360030C738 /* Brass.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Brass.jpg; sourceTree = "<group>"; };
 		32284D42254C77360030C738 /* Marble.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Marble.jpg; sourceTree = "<group>"; };
 		3256A504255A255E0012C16F /* fustrum.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = fustrum.jpeg; sourceTree = "<group>"; };
@@ -150,11 +140,6 @@
 		32284D2E254C77360030C738 /* Texture Images */ = {
 			isa = PBXGroup;
 			children = (
-				32284D33254C77360030C738 /* Stainless.tif */,
-				32284D34254C77360030C738 /* Concrete.tif */,
-				32284D36254C77360030C738 /* Pebbles.jpg */,
-				32284D38254C77360030C738 /* Grey rough.tif */,
-				32284D39254C77360030C738 /* Wood.jpg */,
 				32284D3A254C77360030C738 /* Brass.jpg */,
 				32284D42254C77360030C738 /* Marble.jpg */,
 			);
@@ -249,11 +234,6 @@
 				32729B242546073100DB6663 /* LICENSE.txt in Resources */,
 				32284D5B254C77360030C738 /* Marble.jpg in Resources */,
 				320D69552540982A00A590EB /* Assets.xcassets in Resources */,
-				32284D4F254C77360030C738 /* Pebbles.jpg in Resources */,
-				32284D4C254C77360030C738 /* Stainless.tif in Resources */,
-				32284D4D254C77360030C738 /* Concrete.tif in Resources */,
-				32284D52254C77360030C738 /* Wood.jpg in Resources */,
-				32284D51254C77360030C738 /* Grey rough.tif in Resources */,
 				320D69582540982A00A590EB /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

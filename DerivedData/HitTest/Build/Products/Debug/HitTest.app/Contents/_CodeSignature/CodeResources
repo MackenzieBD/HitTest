@@ -12,14 +12,6 @@
 		<data>
 		fxPq8iJkDTrlKb6trQgn3gT/Gr0=
 		</data>
-		<key>Resources/Concrete.tif</key>
-		<data>
-		6apCYm7epz8FoP4qLHbfRbIyWb8=
-		</data>
-		<key>Resources/Grey rough.tif</key>
-		<data>
-		zxF/ias+x30k2cmg8MudTuLS/ko=
-		</data>
 		<key>Resources/LICENSE.txt</key>
 		<data>
 		0lGppDSHnzbvAdTd2Y2Pt6hu/ds=
@@ -27,18 +19,6 @@
 		<key>Resources/Marble.jpg</key>
 		<data>
 		Qc918ERsBF8/Fv+ZZuMLGbzy7yc=
-		</data>
-		<key>Resources/Pebbles.jpg</key>
-		<data>
-		+yP6Hyaod7nlYUjvZMLr/wc5EBY=
-		</data>
-		<key>Resources/Stainless.tif</key>
-		<data>
-		myjm0NyTSBBU1PU8i8b3nnuOeYo=
-		</data>
-		<key>Resources/Wood.jpg</key>
-		<data>
-		3HBg3A6+nG9ucH20eKYbp3uh3iQ=
 		</data>
 		<key>Resources/default.metallib</key>
 		<data>
@@ -61,20 +41,6 @@
 			ZQ8vMAEa2crnES79kwLKwrgLcnrj+KUyp8JUD5/n9jM=
 			</data>
 		</dict>
-		<key>Resources/Concrete.tif</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			p/pNHGNMEjcA+/XEtu6XX1wTnnNjCTbvZlqqLhhBBbc=
-			</data>
-		</dict>
-		<key>Resources/Grey rough.tif</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			CFVV3w47JXdUha95CyrqzyNvNajUzmV2BnpqLQvzBx0=
-			</data>
-		</dict>
 		<key>Resources/LICENSE.txt</key>
 		<dict>
 			<key>hash2</key>
@@ -87,27 +53,6 @@
 			<key>hash2</key>
 			<data>
 			izYkZWyDvYS+m3GlmGSxBwD0g52wVB0lwydoJWFE8Ys=
-			</data>
-		</dict>
-		<key>Resources/Pebbles.jpg</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			skZZeY4kYtLxfgAt58fncY5DtQsXZq6Z8WamqOxKnQo=
-			</data>
-		</dict>
-		<key>Resources/Stainless.tif</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			hbXvcJ+XIuUwBUlEQpVAcXl+1ZeM0iXTLc0EJe1suSo=
-			</data>
-		</dict>
-		<key>Resources/Wood.jpg</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			LOed00cYxt6B1K4Wwq8dwny9UgTyDcKoNEtgXGq7nL0=
 			</data>
 		</dict>
 		<key>Resources/default.metallib</key>

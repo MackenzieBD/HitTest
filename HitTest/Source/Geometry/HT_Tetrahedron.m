@@ -92,11 +92,9 @@
         
         for( facet = 0  ; facet < 4 ; facet++  )
         {
-    
-            
             for( point = 0 ; point < 3 ; point++ )
             {
-                f[facet][point] = vertex[ index[facet][point]];
+                f[facet][point] = vertex[ index[facet][point] ];
                 f[facet][point].textCoor = textMap[ point ];
                 f[facet][point].pickID = (int)nodeID;
                 f[facet][point].facet = facet;
