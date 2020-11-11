@@ -16,6 +16,8 @@
 		32284D2B254C75630030C738 /* HT_Textures.m in Sources */ = {isa = PBXBuildFile; fileRef = 32284D29254C75630030C738 /* HT_Textures.m */; };
 		32284D53254C77360030C738 /* Brass.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 32284D3A254C77360030C738 /* Brass.jpg */; };
 		32284D5B254C77360030C738 /* Marble.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 32284D42254C77360030C738 /* Marble.jpg */; };
+		32695876255C34920089318D /* Lighting.m in Sources */ = {isa = PBXBuildFile; fileRef = 32695874255C34910089318D /* Lighting.m */; };
+		3269587B255C3D2E0089318D /* TupleFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3269587A255C3D2E0089318D /* TupleFormatter.m */; };
 		32729B242546073100DB6663 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 32729B222546073100DB6663 /* LICENSE.txt */; };
 		32729B252546073100DB6663 /* AAPLMathUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 32729B232546073100DB6663 /* AAPLMathUtilities.m */; };
 		329207542541DB72005CCDAE /* HT_Scene.m in Sources */ = {isa = PBXBuildFile; fileRef = 329207532541DB72005CCDAE /* HT_Scene.m */; };
@@ -45,6 +47,10 @@
 		32284D42254C77360030C738 /* Marble.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Marble.jpg; sourceTree = "<group>"; };
 		3256A504255A255E0012C16F /* fustrum.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = fustrum.jpeg; sourceTree = "<group>"; };
 		3256A505255A27520012C16F /* Read_Me.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Read_Me.rtf; sourceTree = "<group>"; };
+		32695874255C34910089318D /* Lighting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Lighting.m; sourceTree = "<group>"; };
+		32695875255C34920089318D /* Lighting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Lighting.h; sourceTree = "<group>"; };
+		32695879255C3D2D0089318D /* TupleFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TupleFormatter.h; sourceTree = "<group>"; };
+		3269587A255C3D2E0089318D /* TupleFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TupleFormatter.m; sourceTree = "<group>"; };
 		32729B212546073100DB6663 /* AAPLMathUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAPLMathUtilities.h; sourceTree = "<group>"; };
 		32729B222546073100DB6663 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		32729B232546073100DB6663 /* AAPLMathUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAPLMathUtilities.m; sourceTree = "<group>"; };
@@ -81,6 +87,7 @@
 			children = (
 				3256A505255A27520012C16F /* Read_Me.rtf */,
 				3256A504255A255E0012C16F /* fustrum.jpeg */,
+				320D696A2540A63900A590EB /* HT_AppDefs.h */,
 				320D69502540982900A590EB /* HitTest */,
 				320D694F2540982900A590EB /* Products */,
 			);
@@ -97,14 +104,10 @@
 		320D69502540982900A590EB /* HitTest */ = {
 			isa = PBXGroup;
 			children = (
-				320D696A2540A63900A590EB /* HT_AppDefs.h */,
-				320D69512540982900A590EB /* Strawboss.h */,
-				320D69522540982900A590EB /* Strawboss.m */,
-				320D69652540A08000A590EB /* Source */,
-				32284D28254C75630030C738 /* Texture Loader */,
-				32284D2E254C77360030C738 /* Texture Images */,
-				320D69542540982A00A590EB /* Assets.xcassets */,
+				32695871255C26C20089318D /* User Interface */,
+				320D69652540A08000A590EB /* Metal Renderer */,
 				32729B202546073100DB6663 /* AAPLMathUtilities */,
+				320D69542540982A00A590EB /* Assets.xcassets */,
 				320D69562540982A00A590EB /* MainMenu.xib */,
 				320D69592540982A00A590EB /* Info.plist */,
 				320D695A2540982A00A590EB /* main.m */,
@@ -113,24 +116,25 @@
 			path = HitTest;
 			sourceTree = "<group>";
 		};
-		320D69652540A08000A590EB /* Source */ = {
+		320D69652540A08000A590EB /* Metal Renderer */ = {
 			isa = PBXGroup;
 			children = (
 				329207782541E0F3005CCDAE /* HT_Types.h */,
-				32B1EC78254DC92A008DD719 /* LightDefs.h */,
 				320D69662540A14E00A590EB /* HT_Renderer.h */,
 				320D69672540A14E00A590EB /* HT_Renderer.m */,
 				329207522541DB72005CCDAE /* HT_Scene.h */,
 				329207532541DB72005CCDAE /* HT_Scene.m */,
 				320ADF2B254754F800B657C7 /* HT_Shaders.metal */,
+				32284D28254C75630030C738 /* Texture Loader */,
 				3292075A2541DEDF005CCDAE /* Geometry */,
 			);
-			path = Source;
+			path = "Metal Renderer";
 			sourceTree = "<group>";
 		};
 		32284D28254C75630030C738 /* Texture Loader */ = {
 			isa = PBXGroup;
 			children = (
+				32284D2E254C77360030C738 /* Texture Images */,
 				32284D29254C75630030C738 /* HT_Textures.m */,
 				32284D2A254C75630030C738 /* HT_Textures.h */,
 			);
@@ -144,6 +148,20 @@
 				32284D42254C77360030C738 /* Marble.jpg */,
 			);
 			path = "Texture Images";
+			sourceTree = "<group>";
+		};
+		32695871255C26C20089318D /* User Interface */ = {
+			isa = PBXGroup;
+			children = (
+				320D69512540982900A590EB /* Strawboss.h */,
+				320D69522540982900A590EB /* Strawboss.m */,
+				32B1EC78254DC92A008DD719 /* LightDefs.h */,
+				32695875255C34920089318D /* Lighting.h */,
+				32695874255C34910089318D /* Lighting.m */,
+				32695879255C3D2D0089318D /* TupleFormatter.h */,
+				3269587A255C3D2E0089318D /* TupleFormatter.m */,
+			);
+			path = "User Interface";
 			sourceTree = "<group>";
 		};
 		32729B202546073100DB6663 /* AAPLMathUtilities */ = {
@@ -246,6 +264,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3292076A2541DEDF005CCDAE /* HT_Dodecahedron.m in Sources */,
+				32695876255C34920089318D /* Lighting.m in Sources */,
 				3292076E2541DEDF005CCDAE /* HT_Tetrahedron.m in Sources */,
 				3292076C2541DEDF005CCDAE /* HT_Cube.m in Sources */,
 				320D69682540A14E00A590EB /* HT_Renderer.m in Sources */,
@@ -257,6 +276,7 @@
 				329207542541DB72005CCDAE /* HT_Scene.m in Sources */,
 				320D69532540982900A590EB /* Strawboss.m in Sources */,
 				32284D2B254C75630030C738 /* HT_Textures.m in Sources */,
+				3269587B255C3D2E0089318D /* TupleFormatter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
