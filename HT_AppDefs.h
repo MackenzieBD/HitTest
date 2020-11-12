@@ -8,7 +8,8 @@
 #ifndef HT_AppDefs_h
 #define HT_AppDefs_h
 
-#define REPORT      @"Report to Strawboss"
-#define LIGHTING    @"New Lighting"
+#define REPORT          @"Report to Strawboss"
+#define LIGHTING        @"New Lighting"
+#define REPORT_LIGHTING @"Lighting Report"
 
 #endif /* HT_AppDefs_h */

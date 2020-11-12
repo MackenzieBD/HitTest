@@ -32,6 +32,20 @@
     NSDictionary *revertParameters;
 }
 
+-(IBAction)apply: (id)sender
+{
+    NSDictionary    *result,
+                    *info;
+    
+    result = [self currentValues];
+    
+    info = [NSDictionary dictionaryWithObject: result forKey: LIGHTING ];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName: LIGHTING
+                                                        object: self
+                                                      userInfo: info];
+}
+
 -(NSDictionary *)currentValues
 {
     NSDictionary    *result;
@@ -50,14 +64,12 @@
     return result;
 }
 
-- (void)viewDidLoad
+-(IBAction)ok:(id)sender
 {
-    [super viewDidLoad];
+    [self apply: nil];
     
-    [[self numFormatter] setUsesSignificantDigits: YES];
-    [[self numFormatter] setMinimumFractionDigits: 4];
+    [[self mainWindow] endSheet: [[self view] window] ];
     
-    [self setToDefaults: self];
 }
 
 -(IBAction)validateTuple:(id)sender
@@ -68,26 +80,14 @@
     [sender setObjectValue: objValue];
 }
 
--(IBAction)ok:(id)sender
+- (void)viewDidLoad
 {
-    [self apply: nil];
+    [super viewDidLoad];
     
-    [[self mainWindow] endSheet: [[self view] window] ];
+    [[self numFormatter] setUsesSignificantDigits: YES];
+    [[self numFormatter] setMinimumFractionDigits: 4];
     
-}
-
--(IBAction)apply: (id)sender
-{
-    NSDictionary    *result,
-                    *info;
-    
-    result = [self currentValues];
-    
-    info = [NSDictionary dictionaryWithObject: result forKey: LIGHTING ];
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName: LIGHTING
-                                                        object: self
-                                                      userInfo: info];
+    [self setToDefaults: self];
 }
 
 -(IBAction)revert:(id)sender
@@ -101,8 +101,7 @@
     revertParameters = [self currentValues];
     
     [[self mainWindow] beginSheet: [[self view] window]
-    completionHandler: ^(NSModalResponse returnCode)
-    {}];
+                completionHandler: ^(NSModalResponse returnCode) {}];
 }
 
 -(void)setDialogFields: (NSDictionary *)values
@@ -136,6 +135,27 @@
     
     [self setDialogFields: result];
     
+}
+
+-(NSString *)description
+{
+    NSDictionary    *fields;
+    NSMutableString *result;
+    
+    result = [NSMutableString stringWithString: @"\nLighting Report\n\n"];
+    fields = [self currentValues];
+    
+    [result appendFormat: @"      Ambient(r,g,b) \t%@\n", [[self ambient] stringValue]];
+    [result appendFormat: @"Lamp Position(x,y,z) \t%@\n", [[self position] stringValue]];
+    [result appendFormat: @"   Lamp Color(r,g,b) \t%@\n", [[self color] stringValue]];
+    [result appendFormat: @"       Attenuation_0 \t%@\n", [fields objectForKey: LT_ATTEN0]];
+    [result appendFormat: @"       Attenuation_1 \t%@\n", [fields objectForKey: LT_ATTEN1]];
+    [result appendFormat: @"       Attenuation_2 \t%@\n", [fields objectForKey: LT_ATTEN2]];
+    [result appendFormat: @"           Shininess \t%@\n", [fields objectForKey: LT_SHININESS]];
+    [result appendFormat: @"            Strength \t%@\n", [fields objectForKey: LT_STRENGTH]];
+    
+    
+    return result;
 }
 
 @end

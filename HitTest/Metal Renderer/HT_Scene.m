@@ -28,7 +28,8 @@
 // to fit in a 1 unit radius sphere: 1 unit # 3 units # 3 units
 
 #define SCENE_SCALE         (1.0/7.0)
-
+#define ROOT2  0.7071
+#define ROOT3  0.5773
 #define PICK_TEXTURE_SIZE   128
 #define ORBIT_PERIOD        20.0
 
@@ -179,7 +180,7 @@
     
     newParameters = [[note userInfo] objectForKey: LIGHTING];
     
-//    [Lock lock];
+
     tuple = [newParameters objectForKey: LT_AMBIENT];
     uniform->ambient.r = [[tuple objectAtIndex: 0] floatValue];
     uniform->ambient.g = [[tuple objectAtIndex: 1] floatValue];
@@ -200,7 +201,7 @@
     uniform->quadradicAttenuation = [[newParameters objectForKey: LT_ATTEN2] floatValue];
     uniform->shininess =            [[newParameters objectForKey: LT_SHININESS] floatValue];
     uniform->strength =             [[newParameters objectForKey: LT_STRENGTH] floatValue];
-//    [uniformLock unlock];
+
     
 }
 
@@ -474,9 +475,6 @@
 }
 
 //Symmetry axes of a cube
-
-#define ROOT2  0.7071
-#define ROOT3  0.5773
 
 -(void)initAxes
 {

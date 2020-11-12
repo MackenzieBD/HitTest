@@ -177,6 +177,21 @@
     [theScene drawableSizeWillChange: size];
 }
 
+- (BOOL)performKeyEquivalent:(NSEvent *)event
+{
+    NSString    *key;
+    
+    key = [event characters];
+    
+    if( [key isEqualToString: @"l"] )
+    {
+        [[NSNotificationCenter defaultCenter] postNotificationName: REPORT_LIGHTING object: nil ];
+        return YES;
+    }
+    
+    return NO;
+}
+
 // Relay text to StrawBoss
 
 - (void)report: (nonnull NSString *)text
@@ -219,7 +234,7 @@
     
     theScene = [[HT_Scene alloc] initWithDevice: ht_device];
     
-    [self mtkView: metalView drawableSizeWillChange:[metalView drawableSize]];
+    [self mtkView: metalView drawableSizeWillChange: [metalView drawableSize]];
 }
 
 @end

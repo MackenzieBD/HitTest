@@ -45,17 +45,17 @@
                                              selector: @selector(processReport:)
                                                  name: REPORT
                                                object:  nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver: self
+                                             selector: @selector(lightingReport:)
+                                                 name: REPORT_LIGHTING
+                                               object:  nil];
 }
 
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification
 {
     // Insert code here to tear down your application
-}
-
-
--(void)changeLighting:(NSDictionary *)newParameters
-{
 }
 
 - (void)honeyDo: (NSTimer *)timer
@@ -73,6 +73,13 @@
         if( [logViewText length] > 1 )
             [[self logView] scrollRangeToVisible: NSMakeRange( [logViewText length] - 1 , 1 ) ];
     }
+}
+
+-(void)lightingReport: (NSNotification *)note;
+{
+    [queueLock lock];
+    [reportQueue addObject: [[self lightingPanel] description]];
+    [queueLock unlock];
 }
 
 - (NSString *)nextComment
@@ -108,7 +115,6 @@
 
 -(IBAction)showLightingPanel:(id)sender
 {
-
     [[self lightingPanel] showLightingPanel];
 }
 
