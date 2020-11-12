@@ -20,13 +20,23 @@
 
 
 // Default Parameters
-#define DEF_AMBIENT         @".6,.6,.6"
-#define DEF_LAMP_COLOR      @".7,.7,.7"
+
+//#define DEF_AMBIENT         @".6,.6,.6"
+//#define DEF_POSITION        @"2,10,0"
+//#define DEF_LAMP_COLOR      @".7,.7,.7"
+//#define DEF_ATTEN0          @"0"
+//#define DEF_ATTEN1          @"0.05"
+//#define DEF_ATTEN2          @"0"
+//#define DEF_SHININESS       @"20"
+//#define DEF_STRENGTH        @".75"
+
+#define DEF_AMBIENT         @"0.200, 0.200, 0.200"
 #define DEF_POSITION        @"2,10,0"
+#define DEF_LAMP_COLOR      @".7,.7,.7"
 #define DEF_ATTEN0          @"0"
 #define DEF_ATTEN1          @"0.05"
 #define DEF_ATTEN2          @"0"
-#define DEF_SHININESS       @"20"
+#define DEF_SHININESS       @"2"
 #define DEF_STRENGTH        @".75"
 
 #endif /* LightDefs_h */
