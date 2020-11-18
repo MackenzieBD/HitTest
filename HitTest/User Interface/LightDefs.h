@@ -31,7 +31,7 @@
 //#define DEF_STRENGTH        @".75"
 
 #define DEF_AMBIENT         @"0.200, 0.200, 0.200"
-#define DEF_POSITION        @"2,10,0"
+#define DEF_POSITION        @"13.3,13.3,13.3"
 #define DEF_LAMP_COLOR      @".7,.7,.7"
 #define DEF_ATTEN0          @"0"
 #define DEF_ATTEN1          @"0.05"

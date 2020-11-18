@@ -18,6 +18,7 @@
 #import "HT_Octahedron.h"
 #import "HT_Cube.h"
 #import "HT_Icosahedron.h"
+#import "HT_Hemisphere.h"
 
 #import "AAPLMathUtilities.h"
 
@@ -27,20 +28,21 @@
 // so the scene needs to be scaled down by a factor of seven
 // to fit in a 1 unit radius sphere: 1 unit # 3 units # 3 units
 
-#define SCENE_SCALE         (1.0/7.0)
-#define ROOT2  0.7071
-#define ROOT3  0.5773
-#define PICK_TEXTURE_SIZE   128
-#define ORBIT_PERIOD        20.0
+#define SCENE_SCALE             (1.0/7.0)
+#define ROOT2                   0.7071
+#define ROOT3                   0.5773
+#define PICK_TEXTURE_SIZE       128
+#define SHADOW_TEXTURE_SIZE     512
+#define ORBIT_PERIOD            20.0
 
 
 @implementation HT_Scene
 {
     id<MTLDevice>               device;
-    id<HT_Figure>               node[5];
+    id<HT_Figure>               node[6];
     
     id<MTLTexture>              pickTexture;
-    id<MTLBuffer>               vertexBuffer[5],
+    id<MTLBuffer>               vertexBuffer[6],
                                 uniformBuffer;
     id<MTLRenderPipelineState>  pickPipelineState;
     id<MTLDepthStencilState>    depthState;
@@ -55,15 +57,15 @@
                                 sceneTranslation,
                                 scenePerspective,
                                 pickPerspective,
-                                nodeRotation[5],
-                                nodeTranslation[5],
-                                nodeOrientation[5];
+                                nodeRotation[6],
+                                nodeTranslation[6],
+                                nodeOrientation[6];
     
     float                       pickScaleFactor;
     
     HT_Textures                 *theTextures;
     
-    NSUInteger                  vertexCount[5],
+    NSUInteger                  vertexCount[6],
                                 selection;
     
     vector_float3               axis[26];
@@ -104,6 +106,8 @@
         
         node[4] = [[HT_Cube alloc] initAsNode: 4];
         
+        node[5] = [[HT_Hemisphere alloc] initAsNode: 5];
+        
         sceneTranslation = matrix4x4_translation( 0.0 , 0.0 , 26.641);
         
         nodeTranslation[0] = matrix4x4_translation( -6.0 , 0.0 , 0.0 );
@@ -112,7 +116,10 @@
         nodeTranslation[3] = matrix4x4_translation( 3.0 , 0.0 , 0.0 );
         nodeTranslation[4] = matrix4x4_translation( 6.0 , 0.0 , 0.0 );
         
-        for( n = 0 ; n < 5 ; n++ ) 
+        nodeTranslation[5] = matrix4x4_scale(  10 , 10 , 10 );
+        nodeTranslation[5] = simd_mul(matrix4x4_translation( 0.0 , 0.0 , -1.0), nodeTranslation[5]);
+        
+        for( n = 0 ; n < 6 ; n++ )
         {
             item = [node[n] vertexData];
             vertexCount[n] = [item length] / sizeof(HT_Vertex);
@@ -137,6 +144,7 @@
         randomDevice = fopen("/dev/random", "r");
         
         startTime = [[NSDate alloc] init];
+        
     }
     
     return self;
@@ -144,11 +152,12 @@
 
 -(void)animate
 {
-    static NSUInteger   animTrigger = 0;
-    NSTimeInterval      now;
-    float               angle;
-    NSUInteger          n,
-                        trigger;
+    static NSUInteger       animTrigger = 0;
+    static matrix_float4x4  initial[5];
+    NSTimeInterval          now;
+    float                   angle;
+    NSUInteger              n,
+                            trigger;
     
     now = -[startTime timeIntervalSinceNow];
     
@@ -158,6 +167,16 @@
     // If orbit complete--randomly pick rotation axes for next orbit
     if( trigger == animTrigger )
     {
+        if(animTrigger == 0)
+        {
+            for(n = 0 ; n < 5 ; n++ )
+                initial[n] = nodeRotation[n];
+        }
+        else
+        {
+            for(n=0 ; n < 5 ; n++ )
+            initial[n] = nodeRotation[n] = simd_mul( matrix4x4_rotation( 2.5 * M_PI , axis[animAxis[n]] ) , initial[n] );
+        }
         animTrigger++;
         
         animAxis[0] = animAxis[4] = [self random64] % 26;
@@ -165,11 +184,11 @@
         animAxis[2] = [self random64] % 26;
     }
     
-    angle = 2.0 * M_PI * now / ORBIT_PERIOD;
+    angle = 2.5 * M_PI * now / ORBIT_PERIOD;
     
     for( n = 0 ; n < 5 ; n++ )
     {
-        nodeRotation[n] = matrix4x4_rotation( angle , axis[ animAxis[n] ]);
+        nodeRotation[n] = simd_mul( matrix4x4_rotation( angle , axis[ animAxis[n] ] ) , initial[n] );
     }
 }
 
@@ -274,9 +293,9 @@
         //
         // matrix_float4x4 AAPL_SIMD_OVERLOAD matrix_perspective_left_hand(float fovyRadians, float aspect, float nearZ, float farZ);
         
-        scenePerspective = matrix_perspective_left_hand(0.49, aspect, 20.0 , 33.0 );
+        scenePerspective = matrix_perspective_left_hand(0.49, aspect, 20.0 , 50.0 );
         
-        pickPerspective = matrix_perspective_left_hand(0.49, 1.0 , 20.0 , 33.0 );
+        pickPerspective = matrix_perspective_left_hand(0.49, 1.0 , 20.0 , 50.0 );
     }
 }
 
@@ -294,7 +313,7 @@
 //    5. rotate the node (animation);
 //    6. translate the scene from the origin into the viewing volume.
     
-    for( n = 0 ; n < 5 ; n++ )
+    for( n = 0 ; n < 6 ; n++ )
     {
         uniform->normalsTransform[n] = simd_mul(nodeRotation[n] , nodeOrientation[n]);
         
@@ -314,14 +333,24 @@
                               offset: 0
                              atIndex: HT_Uniform_Index];
     
-    for( n = 0 ; n < 5 ; n++ )
+    for( n = 0 ; n < 6 ; n++ )
     {
         if(selection == n )
             [renderEncoder setFragmentTexture: [theTextures textureNamed: @"Brass"]
                                       atIndex: HT_Texture_Index];
         else
-            [renderEncoder setFragmentTexture: [theTextures textureNamed: @"Marble"]
-                                      atIndex: HT_Texture_Index];
+        {
+            if( n == 5 )
+            {
+                [renderEncoder setFragmentTexture: [theTextures textureNamed: @"Concrete"]
+                                          atIndex: HT_Texture_Index];
+            }
+            else
+            {
+                [renderEncoder setFragmentTexture: [theTextures textureNamed: @"Marble"]
+                                          atIndex: HT_Texture_Index];
+            }
+        }
         
         [renderEncoder setVertexBuffer: vertexBuffer[n]
                                 offset: 0
@@ -457,7 +486,7 @@
             
             NSString *comment;
             
-            if( hit[0] < 5 )
+            if( hit[0] < 6 )
             {
                 selection = hit[0];
                 comment = [NSString stringWithFormat: @"\nObject: %@\nFacet: %d\n", node[selection], hit[1]];

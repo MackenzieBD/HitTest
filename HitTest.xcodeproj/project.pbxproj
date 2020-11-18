@@ -13,9 +13,11 @@
 		320D69582540982A00A590EB /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 320D69562540982A00A590EB /* MainMenu.xib */; };
 		320D695B2540982A00A590EB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 320D695A2540982A00A590EB /* main.m */; };
 		320D69682540A14E00A590EB /* HT_Renderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 320D69672540A14E00A590EB /* HT_Renderer.m */; };
+		321F42162565870C005CC961 /* Concrete.tif in Resources */ = {isa = PBXBuildFile; fileRef = 321F42152565870C005CC961 /* Concrete.tif */; };
 		32284D2B254C75630030C738 /* HT_Textures.m in Sources */ = {isa = PBXBuildFile; fileRef = 32284D29254C75630030C738 /* HT_Textures.m */; };
 		32284D53254C77360030C738 /* Brass.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 32284D3A254C77360030C738 /* Brass.jpg */; };
 		32284D5B254C77360030C738 /* Marble.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 32284D42254C77360030C738 /* Marble.jpg */; };
+		323F5F8D256430A700F39DF7 /* HT_Hemisphere.m in Sources */ = {isa = PBXBuildFile; fileRef = 323F5F8C256430A700F39DF7 /* HT_Hemisphere.m */; };
 		325CFA27255C839D00585CE3 /* MetalView.m in Sources */ = {isa = PBXBuildFile; fileRef = 325CFA25255C839C00585CE3 /* MetalView.m */; };
 		32695876255C34920089318D /* Lighting.m in Sources */ = {isa = PBXBuildFile; fileRef = 32695874255C34910089318D /* Lighting.m */; };
 		3269587B255C3D2E0089318D /* TupleFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3269587A255C3D2E0089318D /* TupleFormatter.m */; };
@@ -42,10 +44,13 @@
 		320D69662540A14E00A590EB /* HT_Renderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HT_Renderer.h; sourceTree = "<group>"; };
 		320D69672540A14E00A590EB /* HT_Renderer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HT_Renderer.m; sourceTree = "<group>"; };
 		320D696A2540A63900A590EB /* HT_AppDefs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HT_AppDefs.h; sourceTree = "<group>"; };
+		321F42152565870C005CC961 /* Concrete.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Concrete.tif; sourceTree = "<group>"; };
 		32284D29254C75630030C738 /* HT_Textures.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HT_Textures.m; sourceTree = "<group>"; };
 		32284D2A254C75630030C738 /* HT_Textures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HT_Textures.h; sourceTree = "<group>"; };
 		32284D3A254C77360030C738 /* Brass.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Brass.jpg; sourceTree = "<group>"; };
 		32284D42254C77360030C738 /* Marble.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Marble.jpg; sourceTree = "<group>"; };
+		323F5F8B256430A700F39DF7 /* HT_Hemisphere.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HT_Hemisphere.h; sourceTree = "<group>"; };
+		323F5F8C256430A700F39DF7 /* HT_Hemisphere.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HT_Hemisphere.m; sourceTree = "<group>"; };
 		3256A504255A255E0012C16F /* fustrum.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = fustrum.jpeg; sourceTree = "<group>"; };
 		3256A505255A27520012C16F /* Read_Me.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Read_Me.rtf; sourceTree = "<group>"; };
 		325CFA25255C839C00585CE3 /* MetalView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetalView.m; sourceTree = "<group>"; };
@@ -147,6 +152,7 @@
 		32284D2E254C77360030C738 /* Texture Images */ = {
 			isa = PBXGroup;
 			children = (
+				321F42152565870C005CC961 /* Concrete.tif */,
 				32284D3A254C77360030C738 /* Brass.jpg */,
 				32284D42254C77360030C738 /* Marble.jpg */,
 			);
@@ -193,6 +199,8 @@
 				3292075C2541DEDF005CCDAE /* HT_Dodecahedron.m */,
 				329207682541DEDF005CCDAE /* HT_Icosahedron.h */,
 				3292075F2541DEDF005CCDAE /* HT_Icosahedron.m */,
+				323F5F8B256430A700F39DF7 /* HT_Hemisphere.h */,
+				323F5F8C256430A700F39DF7 /* HT_Hemisphere.m */,
 			);
 			path = Geometry;
 			sourceTree = "<group>";
@@ -223,7 +231,7 @@
 		320D69462540982900A590EB /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1210;
+				LastUpgradeCheck = 1220;
 				TargetAttributes = {
 					320D694D2540982900A590EB = {
 						CreatedOnToolsVersion = 12.1;
@@ -255,6 +263,7 @@
 			files = (
 				32284D53254C77360030C738 /* Brass.jpg in Resources */,
 				32729B242546073100DB6663 /* LICENSE.txt in Resources */,
+				321F42162565870C005CC961 /* Concrete.tif in Resources */,
 				32284D5B254C77360030C738 /* Marble.jpg in Resources */,
 				320D69552540982A00A590EB /* Assets.xcassets in Resources */,
 				320D69582540982A00A590EB /* MainMenu.xib in Resources */,
@@ -283,6 +292,7 @@
 				320D69532540982900A590EB /* Strawboss.m in Sources */,
 				32284D2B254C75630030C738 /* HT_Textures.m in Sources */,
 				3269587B255C3D2E0089318D /* TupleFormatter.m in Sources */,
+				323F5F8D256430A700F39DF7 /* HT_Hemisphere.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -417,6 +427,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = HitTest/HitTest.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = TT7AHBA4Z2;
@@ -437,6 +448,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = HitTest/HitTest.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = TT7AHBA4Z2;

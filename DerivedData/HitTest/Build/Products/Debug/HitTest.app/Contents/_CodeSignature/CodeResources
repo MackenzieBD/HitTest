@@ -6,11 +6,15 @@
 	<dict>
 		<key>Resources/Base.lproj/MainMenu.nib</key>
 		<data>
-		lzus1x3jhOxu4V+nGfcQOp4mm28=
+		lbXY4Fry1h4nBBUqk3fZW824Ziw=
 		</data>
 		<key>Resources/Brass.jpg</key>
 		<data>
 		fxPq8iJkDTrlKb6trQgn3gT/Gr0=
+		</data>
+		<key>Resources/Concrete.tif</key>
+		<data>
+		6apCYm7epz8FoP4qLHbfRbIyWb8=
 		</data>
 		<key>Resources/LICENSE.txt</key>
 		<data>
@@ -22,7 +26,7 @@
 		</data>
 		<key>Resources/default.metallib</key>
 		<data>
-		Htsf4PZ8zC1pHtiQEObJH1FofEg=
+		+a0KiqYUWSYNOLJ7oOANm2OntiY=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -31,7 +35,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			/xgPWPB5FnUdf4iX98IaP3pZ3JKcqFNvmTVvBPanfK0=
+			7lu9kj8E1GdUg5jGFbCQEJ/NqTbyAXOjNiTvvbgVRYk=
 			</data>
 		</dict>
 		<key>Resources/Brass.jpg</key>
@@ -39,6 +43,13 @@
 			<key>hash2</key>
 			<data>
 			ZQ8vMAEa2crnES79kwLKwrgLcnrj+KUyp8JUD5/n9jM=
+			</data>
+		</dict>
+		<key>Resources/Concrete.tif</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			p/pNHGNMEjcA+/XEtu6XX1wTnnNjCTbvZlqqLhhBBbc=
 			</data>
 		</dict>
 		<key>Resources/LICENSE.txt</key>
@@ -59,7 +70,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			Le8NpQBbfxI4XvSAVahEHRyOxEBiUVBPgH8TTiLLHxY=
+			mYouehq+SfHkIJo6ulDGYoR4i3BRPZUtMTuvRooCfWo=
 			</data>
 		</dict>
 	</dict>
